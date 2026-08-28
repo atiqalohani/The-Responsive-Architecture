@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blueprint — Plan your build</title>
+  <meta name="description" content="Blueprint is a responsive task board for planning your day, one block at a time." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styleeee.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="#top">
+        <span class="logo-mark" aria-hidden="true">⌗</span>
+        Blueprint
+      </a>
+
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        aria-expanded="false"
+        aria-controls="primaryNav"
+        aria-label="Toggle menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="primary-nav" id="primaryNav" aria-label="Primary">
+        <a href="#top">Overview</a>
+        <a href="#board">Board</a>
+        <a href="#about">About</a>
+        <a class="nav-cta" href="#board">New task</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" id="top" aria-labelledby="hero-heading">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Project 1 · Responsive Interface</p>
+        <h1 id="hero-heading">Build your day,<br />one block at a time.</h1>
+        <p class="hero-sub">
+          Blueprint is a lightweight task board that sketches your work the way an
+          architect sketches a building: structured, adaptable, and clear at every
+          scale — phone, tablet, or desktop.
+        </p>
+        <div class="hero-actions">
+          <a href="#board" class="btn btn-primary">Start planning</a>
+          <a href="#about" class="btn btn-ghost">How it works</a>
+        </div>
+      </div>
+
+      <div class="hero-mock" role="img" aria-label="Preview of the Blueprint task board interface">
+        <div class="mock-window">
+          <div class="mock-bar">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="mock-row"></div>
+          <div class="mock-row short"></div>
+          <div class="mock-row"></div>
+        </div>
+        <span class="dim-label dim-top">1920px</span>
+        <span class="dim-label dim-side">1080px</span>
+      </div>
+    </section>
+
+    <!-- APP / BOARD -->
+    <section class="app" id="board" aria-labelledby="board-heading">
+
+      <aside class="sidebar" aria-label="Filters and stats">
+        <h2 id="board-heading" class="sidebar-title">Your board</h2>
+
+        <dl class="stats">
+          <div class="stat">
+            <dt>Total</dt>
+            <dd id="statTotal">0</dd>
+          </div>
+          <div class="stat">
+            <dt>Active</dt>
+            <dd id="statActive">0</dd>
+          </div>
+          <div class="stat">
+            <dt>Done</dt>
+            <dd id="statDone">0</dd>
+          </div>
+        </dl>
+
+        <div class="filter-group" role="group" aria-label="Filter tasks">
+          <button class="filter-btn is-active" data-filter="all" type="button">All</button>
+          <button class="filter-btn" data-filter="active" type="button">Active</button>
+          <button class="filter-btn" data-filter="done" type="button">Done</button>
+        </div>
+
+        <button class="btn btn-outline clear-btn" id="clearDone" type="button">
+          Clear completed
+        </button>
+      </aside>
+
+      <div class="board">
+
+        <form class="task-form" id="taskForm" novalidate>
+          <div class="field field-grow">
+            <label for="taskTitle">Task</label>
+            <input
+              type="text"
+              id="taskTitle"
+              name="taskTitle"
+              placeholder="e.g. Wireframe the landing page"
+              autocomplete="off"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="taskPriority">Priority</label>
+            <select id="taskPriority" name="taskPriority">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Add task</button>
+        </form>
+
+        <p class="form-error" id="formError" role="alert" hidden>
+          Give the task a title before adding it to the board.
+        </p>
+
+        <ul class="task-list" id="taskList" aria-live="polite" aria-label="Task list">
+          <!-- Task <li><article> items are rendered here by script.js -->
+        </ul>
+
+        <p class="empty-state" id="emptyState">
+          Nothing on the board yet. Add your first task above.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ABOUT / TOOLKIT -->
+    <section class="about" id="about" aria-labelledby="about-heading">
+      <h2 id="about-heading">Built on three pillars</h2>
+      <div class="pillars">
+        <article class="pillar">
+          <span class="pillar-index">01</span>
+          <h3>Semantic structure</h3>
+          <p>
+            Header, nav, main, and article elements give the page an outline
+            that both screen readers and search engines can follow.
+          </p>
+        </article>
+        <article class="pillar">
+          <span class="pillar-index">02</span>
+          <h3>Fluid layout</h3>
+          <p>
+            CSS Grid frames the board, Flexbox lines up each toolbar, and
+            <code>clamp()</code> keeps type readable from a phone to a monitor.
+          </p>
+        </article>
+        <article class="pillar">
+          <span class="pillar-index">03</span>
+          <h3>Plain-JS state</h3>
+          <p>
+            No framework — a single in-memory store renders the list, updates
+            counters, and reacts to every click.
+          </p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark" aria-hidden="true">⌗</span>
+        <span>Blueprint</span>
+      </div>
+      <p class="footer-note">
+        Project 1 — Responsive Frontend Interface. Built with semantic HTML5,
+        mobile-first CSS, and vanilla JavaScript. No frameworks, no build step.
+      </p>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="#top">Overview</a>
+        <a href="#board">Board</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="scriptt.js"></script>
+</body>
+</html>
