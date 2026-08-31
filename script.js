@@ -5,6 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initThemeEngine();
+  initParallelScrollEngine();
   initCadLayerToggles();
   initMirrorAndLegend();
   initCustomizerAndEstimator();
@@ -35,7 +36,47 @@ function initThemeEngine() {
     document.documentElement.setAttribute('data-theme', theme);
   }
 }
+/* ==========================================================================
+   PARALLEL SCROLL OBSERVER & DATA SYNC ENGINE
+   ========================================================================== */
+function initParallelScrollEngine() {
+  const cards = document.querySelectorAll('.parallel-card');
+  const titleElem = document.getElementById('parallelPlanTitle');
+  const areaElem = document.getElementById('parallelArea');
+  const bedsElem = document.getElementById('parallelBeds');
+  const costElem = document.getElementById('parallelCost');
 
+  if (!cards.length) return;
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -40% 0px',
+    threshold: 0.5
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Highlight active right card
+        cards.forEach(c => c.classList.remove('active-card'));
+        entry.target.classList.add('active-card');
+
+        // Dynamically update sticky left card content
+        const planName = entry.target.getAttribute('data-plan');
+        const area = entry.target.getAttribute('data-area');
+        const beds = entry.target.getAttribute('data-beds');
+        const cost = entry.target.getAttribute('data-cost');
+
+        if (titleElem) titleElem.textContent = planName;
+        if (areaElem) areaElem.textContent = area;
+        if (bedsElem) bedsElem.textContent = beds;
+        if (costElem) costElem.textContent = cost;
+      }
+    });
+  }, observerOptions);
+
+  cards.forEach(card => observer.observe(card));
+}
 /* ==========================================================================
    2. INTERACTIVE CAD LAYER TOGGLES & REVERSE PLAN
    ========================================================================== */
