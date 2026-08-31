@@ -1,6 +1,6 @@
 /**
- * Digital Craftsmanship - Main Application Engine
- * Pure Vanilla JavaScript implementation.
+ * Blueprint Application Engine
+ * Pure Vanilla JavaScript implementation with Parallax Scroll Support.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,17 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
   initConsultationForm();
   initScrollAndShortcuts();
   initModalListeners();
+  initParallaxEngine();
 });
 
 /* ==========================================================================
-   1. LIGHT / DARK THEME ENGINE (LOCAL STORAGE PERSISTENCE)
+   1. LIGHT / DARK THEME ENGINE
    ========================================================================== */
 function initThemeEngine() {
   const themeToggleBtn = document.getElementById('themeToggleBtn');
+  if (!themeToggleBtn) return;
+
   const themeIcon = themeToggleBtn.querySelector('.theme-icon');
   const themeLabel = themeToggleBtn.querySelector('.theme-label');
 
-  // Read saved theme preference or system default
   const savedTheme = localStorage.getItem('theme_preference') || 
     (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
@@ -37,17 +39,35 @@ function initThemeEngine() {
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     if (theme === 'dark') {
-      themeIcon.textContent = '☀️';
-      themeLabel.textContent = 'Light Mode';
+      if (themeIcon) themeIcon.textContent = '☀️';
+      if (themeLabel) themeLabel.textContent = 'Light Mode';
     } else {
-      themeIcon.textContent = '🌙';
-      themeLabel.textContent = 'Dark Mode';
+      if (themeIcon) themeIcon.textContent = '🌙';
+      if (themeLabel) themeLabel.textContent = 'Dark Mode';
     }
   }
 }
 
 /* ==========================================================================
-   2. GALLERY FILTER & LIGHTBOX MODAL
+   2. PARALLAX SCROLLING CONTROLLER
+   ========================================================================== */
+function initParallaxEngine() {
+  const parallaxLayers = document.querySelectorAll('.parallax-layer');
+  if (!parallaxLayers.length) return;
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+
+    parallaxLayers.forEach(layer => {
+      const speed = parseFloat(layer.getAttribute('data-speed')) || 0.1;
+      const yPos = -(scrolled * speed);
+      layer.style.transform = `translate3d(0px, ${yPos}px, 0px)`;
+    });
+  });
+}
+
+/* ==========================================================================
+   3. GALLERY FILTER & LIGHTBOX MODAL
    ========================================================================== */
 function initGalleryFilters() {
   const filterBtns = document.querySelectorAll('.filter-btn');
@@ -70,36 +90,40 @@ function initGalleryFilters() {
     });
   });
 
-  // Lightbox Zoom Handler
+  // Lightbox View Handler
   galleryCards.forEach(card => {
     card.addEventListener('click', () => {
-      const svgContent = card.querySelector('.blueprint-svg').outerHTML;
+      const img = card.querySelector('img');
       const title = card.querySelector('h3').textContent;
-      
+
+      if (!img) return;
+
       const lightboxContent = document.getElementById('lightboxContent');
       const lightboxCaption = document.getElementById('lightboxCaption');
-      
-      lightboxContent.innerHTML = svgContent;
-      lightboxCaption.textContent = title + " - Detailed Zoom Blueprint View";
-      
+
+      lightboxContent.innerHTML = `<img src="${img.src}" alt="${img.alt}" style="max-width:100%; max-height: 80vh;">`;
+      lightboxCaption.textContent = title + " — Architectural Blueprint View";
+
       openModal('lightboxModal');
     });
   });
 }
 
 /* ==========================================================================
-   3. REAL-TIME SEARCH FILTER FOR SPECIFICATIONS
+   4. REAL-TIME SEARCH FILTER FOR SPECIFICATIONS
    ========================================================================== */
 function initSpecsSearch() {
   const searchInput = document.getElementById('searchInput');
   const specCards = document.querySelectorAll('.spec-card');
 
+  if (!searchInput) return;
+
   searchInput.addEventListener('input', (e) => {
     const query = e.target.value.toLowerCase().trim();
 
     specCards.forEach(card => {
-      const title = card.getAttribute('data-title').toLowerCase();
-      const tags = card.getAttribute('data-tags').toLowerCase();
+      const title = (card.getAttribute('data-title') || '').toLowerCase();
+      const tags = (card.getAttribute('data-tags') || '').toLowerCase();
       const textContent = card.innerText.toLowerCase();
 
       if (title.includes(query) || tags.includes(query) || textContent.includes(query)) {
@@ -112,7 +136,7 @@ function initSpecsSearch() {
 }
 
 /* ==========================================================================
-   4. ANIMATED METRICS COUNTER
+   5. ANIMATED METRICS COUNTER
    ========================================================================== */
 function initMetricsCounter() {
   const metricValues = document.querySelectorAll('.metric-value');
@@ -130,7 +154,7 @@ function initMetricsCounter() {
       metricValues.forEach(counter => {
         const target = +counter.getAttribute('data-target');
         let count = 0;
-        const increment = target / 30; // Smooth step size
+        const increment = target / 30;
 
         const updateCount = () => {
           count += increment;
@@ -148,16 +172,16 @@ function initMetricsCounter() {
 }
 
 /* ==========================================================================
-   5. CONSULTATION FORM CLIENT VALIDATION
+   6. CONSULTATION FORM CLIENT VALIDATION
    ========================================================================== */
 function initConsultationForm() {
   const form = document.getElementById('consultationForm');
+  if (!form) return;
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     let isValid = true;
 
-    // Field references
     const nameInput = document.getElementById('fullName');
     const emailInput = document.getElementById('workEmail');
     const scopeInput = document.getElementById('platformScope');
@@ -166,114 +190,122 @@ function initConsultationForm() {
 
     // Name Validation
     if (nameInput.value.trim().length < 2) {
-      setError(nameInput, 'nameError');
+      setError(nameInput);
       isValid = false;
     } else {
-      clearError(nameInput, 'nameError');
+      clearError(nameInput);
     }
 
-    // Email Validation (Regex)
+    // Email Validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(emailInput.value.trim())) {
-      setError(emailInput, 'emailError');
+      setError(emailInput);
       isValid = false;
     } else {
-      clearError(emailInput, 'emailError');
+      clearError(emailInput);
     }
 
     // Scope Validation
     if (scopeInput.value === '') {
-      setError(scopeInput, 'scopeError');
+      setError(scopeInput);
       isValid = false;
     } else {
-      clearError(scopeInput, 'scopeError');
+      clearError(scopeInput);
     }
 
     // Budget Validation
     if (budgetInput.value === '') {
-      setError(budgetInput, 'budgetError');
+      setError(budgetInput);
       isValid = false;
     } else {
-      clearError(budgetInput, 'budgetError');
+      clearError(budgetInput);
     }
 
-    // Specifications Details Validation
+    // Details Validation
     if (detailsInput.value.trim().length < 15) {
-      setError(detailsInput, 'detailsError');
+      setError(detailsInput);
       isValid = false;
     } else {
-      clearError(detailsInput, 'detailsError');
+      clearError(detailsInput);
     }
 
     if (isValid) {
-      // Trigger Success State Modal
       document.getElementById('successModalMsg').innerText = 
-        `Thank you, ${nameInput.value}! Your consultation request for "${scopeInput.value}" with budget "${budgetInput.value}" has been logged successfully.`;
+        `Thank you, ${nameInput.value}! Your request for "${scopeInput.value}" with budget "${budgetInput.value}" has been logged successfully.`;
       openModal('successModal');
       form.reset();
     }
   });
 
-  function setError(inputElem, errorId) {
+  function setError(inputElem) {
     inputElem.parentElement.classList.add('invalid');
   }
 
-  function clearError(inputElem, errorId) {
+  function clearError(inputElem) {
     inputElem.parentElement.classList.remove('invalid');
   }
 }
 
 /* ==========================================================================
-   6. SCROLL & KEYBOARD SHORTCUT HANDLERS
+   7. SCROLL & KEYBOARD SHORTCUT HANDLERS
    ========================================================================== */
 function initScrollAndShortcuts() {
   const backToTopBtn = document.getElementById('backToTopBtn');
   const searchInput = document.getElementById('searchInput');
+  const searchShortcutBtn = document.getElementById('searchShortcutBtn');
 
-  // Floating Back to Top Button
   window.addEventListener('scroll', () => {
     if (window.scrollY > 400) {
-      backToTopBtn.classList.add('visible');
+      backToTopBtn?.classList.add('visible');
     } else {
-      backToTopBtn.classList.remove('visible');
+      backToTopBtn?.classList.remove('visible');
     }
   });
 
-  backToTopBtn.addEventListener('click', () => {
+  backToTopBtn?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // Search shortcut button in header
-  document.getElementById('searchShortcutBtn').addEventListener('click', () => {
-    searchInput.focus();
-    searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  searchShortcutBtn?.addEventListener('click', () => {
+    if (searchInput) {
+      searchInput.focus();
+      searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   });
 
-  // Keyboard Slash Hotkey handler
   window.addEventListener('keydown', (e) => {
     if (e.key === '/' && document.activeElement !== searchInput) {
       e.preventDefault();
-      searchInput.focus();
-      searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (searchInput) {
+        searchInput.focus();
+        searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     }
   });
 }
 
 /* ==========================================================================
-   7. MODAL UTILITIES & LISTENERS
+   8. MODAL UTILITIES
    ========================================================================== */
 function initModalListeners() {
-  document.getElementById('lightboxClose').addEventListener('click', () => closeModal('lightboxModal'));
-  document.getElementById('specModalClose').addEventListener('click', () => closeModal('specModal'));
-  document.getElementById('successModalClose').addEventListener('click', () => closeModal('successModal'));
+  document.getElementById('lightboxClose')?.addEventListener('click', () => closeModal('lightboxModal'));
+  document.getElementById('specModalClose')?.addEventListener('click', () => closeModal('specModal'));
+  document.getElementById('successModalClose')?.addEventListener('click', () => closeModal('successModal'));
 
-  // Close when clicking overlay backdrop
   document.querySelectorAll('.modal-overlay').forEach(overlay => {
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) {
         closeModal(overlay.id);
       }
     });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+        closeModal(modal.id);
+      });
+    }
   });
 }
 
@@ -282,6 +314,7 @@ function openModal(modalId) {
   if (modal) {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
   }
 }
 
@@ -290,12 +323,14 @@ function closeModal(modalId) {
   if (modal) {
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
   }
 }
 
-// Global modal trigger helper for card spec detail buttons
 function openSpecModal(title, body) {
-  document.getElementById('specModalTitle').innerText = title;
-  document.getElementById('specModalBody').innerText = body;
+  const specTitle = document.getElementById('specModalTitle');
+  const specBody = document.getElementById('specModalBody');
+  if (specTitle) specTitle.innerText = title;
+  if (specBody) specBody.innerText = body;
   openModal('specModal');
 }
