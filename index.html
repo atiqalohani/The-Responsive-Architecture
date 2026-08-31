@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blueprint — Architectural Crafts & Design</title>
+  <title>Blueprint — Next-Gen Architectural CAD & BIM Platform</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,11 +25,11 @@
 
       <nav class="desktop-nav">
         <ul class="nav-links">
-          <li><a href="#hero">Overview</a></li>
-          <li><a href="#gallery">House Blueprints</a></li>
-          <li><a href="#specs">Specifications</a></li>
-          <li><a href="#metrics">Analytics</a></li>
-          <li><a href="#consultation">Consultation</a></li>
+          <li><a href="#interactive-viewer">Interactive CAD</a></li>
+          <li><a href="#customizer">Customizer & Estimator</a></li>
+          <li><a href="#comparison">Compare Plans</a></li>
+          <li><a href="#licensing">Licensing & Prints</a></li>
+          <li><a href="#collaboration">Markup Workspace</a></li>
         </ul>
       </nav>
 
@@ -49,152 +49,288 @@
   <!-- MAIN WRAPPER -->
   <main class="main-wrapper">
 
-    <!-- HERO BANNER WITH 3D RENDERING -->
+    <!-- HERO SECTION WITH PARALLAX & 3D RENDERING -->
     <section id="hero" class="hero-section parallax-container">
       <div class="hero-content parallax-layer" data-speed="0.15">
         <span class="hero-pill">Architectural Precision</span>
         <h1 class="hero-title">Engineering Next-Gen Architectural Blueprints</h1>
         <p class="hero-subtitle">
-          Explore interactive CAD layouts, 3D architectural renderings, and structural schematics engineered for precision housing and modern urban development.
+          Explore interactive CAD layouts, MEP layer overlays, 3D WebXR/BIM walkthroughs, and zip-code integrated construction cost modeling.
         </p>
         <div class="hero-cta-group">
-          <a href="#gallery" class="btn-primary">Explore Schematics</a>
-          <a href="#consultation" class="btn-secondary">Request Consultation</a>
+          <a href="#interactive-viewer" class="btn-primary">Open CAD Viewer</a>
+          <a href="#customizer" class="btn-secondary">Plan Customizer</a>
         </div>
       </div>
 
-      <!-- 3D BLUEPRINT RENDERING HERO IMAGE -->
       <div class="hero-image-wrapper parallax-layer" data-speed="-0.1">
         <img src="3d_2.jpg" alt="3D Architectural High-Rise Blueprint Model" class="hero-3d-img">
       </div>
 
       <div class="hero-stats-pills">
-        <span class="pill-stat">📐 1:100 Scale Precision</span>
-        <span class="pill-stat">🏢 3D BIM Compatible</span>
-        <span class="pill-stat">⚡ Instant Vector Export</span>
+        <span class="pill-stat">📐 1:100 Scale Vector CAD</span>
+        <span class="pill-stat">🏢 3D WebXR & BIM (.RVT)</span>
+        <span class="pill-stat">⚡ Instant .DWG / Stamped PDF</span>
       </div>
     </section>
 
-    <!-- BLUEPRINT GALLERY SECTION -->
-    <section id="gallery" class="section-container">
+    <!-- 1. CORE BLUEPRINT & VISUAL DISPLAYS -->
+    <section id="interactive-viewer" class="section-container">
       <div class="section-header">
-        <h2 class="section-title">House Blueprint Gallery</h2>
-        <p class="section-desc">Browse architectural blueprints, 3D interior models, and spatial floor plans.</p>
+        <h2 class="section-title">Interactive CAD Viewer & Layer Toggle</h2>
+        <p class="section-desc">Toggle between Architectural, MEP (Plumbing/Electrical), and Structural engineering layers in real-time.</p>
       </div>
 
-      <div class="filter-tabs">
-        <button class="filter-btn active" data-category="all">All Blueprints</button>
-        <button class="filter-btn" data-category="residential">Residential Houses</button>
-        <button class="filter-btn" data-category="commercial">Commercial Buildings</button>
-        <button class="filter-btn" data-category="model">3D Physical Models</button>
-      </div>
-
-      <div class="gallery-grid">
-        <!-- Card 1 -->
-        <div class="gallery-card" data-category="residential">
-          <div class="card-image-wrap">
-            <img src="architectural-blueprint@2x_2.jpg" alt="Detailed Technical Blueprint" class="card-img">
-            <div class="gallery-overlay">Zoom Blueprint View 🔍</div>
+      <div class="cad-viewer-box">
+        <div class="cad-toolbar">
+          <div class="toolbar-group">
+            <span class="toolbar-label">Layer Visibility:</span>
+            <button class="layer-toggle active" data-layer="arch">Architectural</button>
+            <button class="layer-toggle active" data-layer="mep">MEP (HVAC/Plumbing)</button>
+            <button class="layer-toggle active" data-layer="structural">Structural Steel</button>
           </div>
-          <div class="gallery-info">
-            <span class="card-tag">Residential</span>
-            <h3>Modern Villa CAD Blueprint</h3>
-            <p>Detailed technical floor plan layout with wall measurements and plumbing vectors.</p>
+          <div class="toolbar-group">
+            <button id="mirrorPlanBtn" class="btn-tool">↔️ Mirror / Reverse Layout</button>
+            <button id="arPreviewBtn" class="btn-tool">📱 AR Site Preview</button>
+            <button id="legendToggleBtn" class="btn-tool">📖 Symbol Legend</button>
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="gallery-card" data-category="model">
-          <div class="card-image-wrap">
-            <img src="images_2.jpg" alt="3D House Model Blueprint Workspace" class="card-img">
-            <div class="gallery-overlay">Zoom Blueprint View 🔍</div>
-          </div>
-          <div class="gallery-info">
-            <span class="card-tag">3D Model</span>
-            <h3>Residential Craft Model & Layout</h3>
-            <p>Physical miniature mockup backed by full CAD architectural drawings.</p>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="gallery-card" data-category="commercial">
-          <div class="card-image-wrap">
-            <img src="3d_2.jpg" alt="3D High-Rise Commercial Blueprint" class="card-img">
-            <div class="gallery-overlay">Zoom Blueprint View 🔍</div>
-          </div>
-          <div class="gallery-info">
-            <span class="card-tag">Commercial</span>
-            <h3>Urban High-Rise Structural Plan</h3>
-            <p>Modular skyscraper steel frame analysis and exterior glass facade elevation.</p>
+        <div id="cadCanvasContainer" class="cad-canvas-container">
+          <!-- Vector Architectural Blueprint Representation -->
+          <div id="blueprintCanvas" class="blueprint-canvas">
+            <div class="cad-layer layer-arch">
+              <div class="room room-living">Living Room (24' x 18')</div>
+              <div class="room room-kitchen">Kitchen & Dining (16' x 14')</div>
+              <div class="room room-master">Master Suite (20' x 16')</div>
+            </div>
+            <div class="cad-layer layer-mep">
+              <div class="mep-conduit conduit-elec">⚡ Main Electrical Trunk Line</div>
+              <div class="mep-conduit conduit-plumb">💧 HVAC Duct & Water Line Supply</div>
+            </div>
+            <div class="cad-layer layer-structural">
+              <div class="steel-beam beam-1">I-Beam Structural Axis A</div>
+              <div class="steel-beam beam-2">I-Beam Structural Axis B</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- LIVE SEARCH & SPECIFICATIONS SECTION -->
-    <section id="specs" class="section-container">
+    <!-- SYMBOL LEGEND MODAL OVERLAY -->
+    <div id="legendBox" class="legend-popover hidden">
+      <h4>Architectural Notation Legend</h4>
+      <ul class="legend-list">
+        <li><span class="legend-symbol sym-wall"></span> <b>Solid Double Line:</b> Load-Bearing Exterior Wall</li>
+        <li><span class="legend-symbol sym-mep"></span> <b>Blue Dotted Line:</b> MEP Conduit / Plumbing Supply</li>
+        <li><span class="legend-symbol sym-steel"></span> <b>Red Dashed Line:</b> Primary Structural Steel Support</li>
+      </ul>
+    </div>
+
+    <!-- 3D VISUALIZATIONS & WALKTHROUGHS -->
+    <section id="bim-walkthrough" class="section-container">
       <div class="section-header">
-        <h2 class="section-title">Technical Specifications</h2>
-        <p class="section-desc">Search structural requirements, material vectors, and building codes.</p>
+        <h2 class="section-title">3D BIM Model & Virtual Walkthrough</h2>
+        <p class="section-desc">Experience 360-degree virtual space models paired directly with 2D technical floor plans.</p>
       </div>
 
-      <div class="search-box-container">
-        <span class="search-icon-inside">🔍</span>
-        <input type="text" id="searchInput" class="search-input" placeholder="Search specs by keyword or tag (press '/' to focus)...">
-      </div>
-
-      <div class="specs-grid">
-        <div class="spec-card" data-title="Load Bearing Steel Frame" data-tags="structural steel material frame">
-          <span class="card-badge">Structural</span>
-          <h3>Load-Bearing Steel Frames</h3>
-          <p>High-tensile structural steel specs optimized for multi-story residential framing.</p>
-          <button class="btn-card-action" onclick="openSpecModal('Load-Bearing Steel Frames', 'Detailed engineering standards for grade 50 structural steel framing, deflection limits, and corrosion protection coating.')">View Standards</button>
+      <div class="bim-grid">
+        <div class="bim-card">
+          <img src="images_2.jpg" alt="3D Physical Architectural Model" class="bim-img">
+          <div class="bim-info">
+            <h3>Modern Villa Miniature & Spatial Layout</h3>
+            <p>Physical miniature scale combined with digital BIM space simulation.</p>
+            <button class="btn-primary" onclick="openModal('bimModal')">Launch 360° BIM Viewer</button>
+          </div>
         </div>
-
-        <div class="spec-card" data-title="Foundation Concrete Slab" data-tags="foundation concrete slab civil">
-          <span class="card-badge">Civil</span>
-          <h3>Reinforced Slab Foundations</h3>
-          <p>Sub-grade concrete slab specifications with integrated damp-proof membrane layers.</p>
-          <button class="btn-card-action" onclick="openSpecModal('Reinforced Slab Foundations', 'Complete soil bearing capacity requirement specs, rebar spacing matrices, and waterproofing standards.')">View Standards</button>
-        </div>
-
-        <div class="spec-card" data-title="Solar Thermal & HVAC Integration" data-tags="hvac solar electrical energy">
-          <span class="card-badge">MEP</span>
-          <h3>HVAC & Solar Integration</h3>
-          <p>Blueprint vector specs for rooftop photovoltaic solar integration and duct routing.</p>
-          <button class="btn-card-action" onclick="openSpecModal('HVAC & Solar Integration', 'Energy efficiency ratings, duct static pressure specs, and solar inverter wiring diagrams.')">View Standards</button>
+        <div class="bim-card">
+          <img src="architectural-blueprint@2x_2.jpg" alt="Technical Layout Blueprint" class="bim-img">
+          <div class="bim-info">
+            <h3>Structural Blueprints & CAD Vector Sets</h3>
+            <p>Precision CAD exports with full layer detail for construction crews.</p>
+            <button class="btn-secondary" onclick="downloadBOM()">Download Take-off BOM Sheet</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- DASHBOARD METRICS SECTION -->
-    <section id="metrics" class="section-container">
-      <div class="metrics-wrapper">
-        <div class="section-header">
-          <h2 class="section-title">Engineering Impact</h2>
-          <p class="section-desc">Quantifiable milestones delivered across residential and commercial projects.</p>
+    <!-- 2. DYNAMIC CUSTOMIZATION & CALCULATORS -->
+    <section id="customizer" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Plan Customizer & Regional Cost Estimator</h2>
+        <p class="section-desc">Tweak structural specifications and calculate zip-code based cost adjustments in real time.</p>
+      </div>
+
+      <div class="customizer-wrapper">
+        <!-- Structural Tweaks -->
+        <div class="customizer-box">
+          <h3>1. Structural Options</h3>
+          <div class="custom-option">
+            <label><input type="checkbox" id="optGarage" data-cost="18500" onchange="calculateCustomCost()"> Add 2-Car Attached Garage (+$18,500)</label>
+          </div>
+          <div class="custom-option">
+            <label><input type="checkbox" id="optPatio" data-cost="8200" onchange="calculateCustomCost()"> Covered Patio Extension (+$8,200)</label>
+          </div>
+          <div class="custom-option">
+            <label><input type="checkbox" id="optRoof" data-cost="12000" onchange="calculateCustomCost()"> High-Pitch Steep Slate Roof (+$12,000)</label>
+          </div>
+
+          <h3 style="margin-top: 1.5rem;">2. Lot Compatibility Checker</h3>
+          <div class="lot-checker-form">
+            <input type="number" id="plotWidth" class="form-input" placeholder="Plot Width (ft)" value="60">
+            <input type="number" id="plotDepth" class="form-input" placeholder="Plot Depth (ft)" value="100">
+            <button class="btn-secondary" onclick="checkLotCompatibility()">Verify Fit</button>
+          </div>
+          <p id="lotStatus" class="lot-status"></p>
         </div>
-        <div class="metrics-grid">
-          <div class="metric-card">
-            <div class="metric-value" data-target="1250">0</div>
-            <div class="metric-unit">Units</div>
-            <div class="metric-label">Blueprints Generated</div>
+
+        <!-- Regional Zip Estimator & Sun Path -->
+        <div class="customizer-box">
+          <h3>3. Zip-Code Construction Estimator</h3>
+          <div class="form-group">
+            <label for="zipCodeInput">Target Construction Zip Code:</label>
+            <div class="zip-input-group">
+              <input type="text" id="zipCodeInput" class="form-input" placeholder="e.g. 90210" value="90210">
+              <button class="btn-primary" onclick="calculateCustomCost()">Update Regional Index</button>
+            </div>
           </div>
-          <div class="metric-card">
-            <div class="metric-value" data-target="98">0</div>
-            <div class="metric-unit">%</div>
-            <div class="metric-label">Precision Rating</div>
+
+          <div class="cost-breakdown-card">
+            <div class="cost-row"><span>Base Plan Index:</span> <strong>$285,000</strong></div>
+            <div class="cost-row"><span>Custom Add-ons:</span> <strong id="addonCost">$0</strong></div>
+            <div class="cost-row"><span>Regional Multiplier (Zip):</span> <strong id="zipMultiplier">1.15x</strong></div>
+            <hr class="modal-divider">
+            <div class="cost-row cost-total"><span>Estimated Construction Cost:</span> <strong id="totalEstimatedCost">$327,750</strong></div>
           </div>
-          <div class="metric-card">
-            <div class="metric-value" data-target="340">0</div>
-            <div class="metric-unit">Projects</div>
-            <div class="metric-label">Houses Built</div>
+
+          <h3 style="margin-top: 1.5rem;">4. Sun-Path / Solar Orientation</h3>
+          <div class="sun-path-sim">
+            <label for="sunRange">Time of Day (Sun Position):</label>
+            <input type="range" id="sunRange" min="6" max="18" value="12" oninput="updateSunPath(this.value)">
+            <p id="sunPathStatus" class="sun-status">☀️ Noon (12:00 PM) — Maximum direct overhead sunlight exposure.</p>
           </div>
-          <div class="metric-card">
-            <div class="metric-value" data-target="15">0</div>
-            <div class="metric-unit">ms</div>
-            <div class="metric-label">Avg CAD Vector Render</div>
-          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIDE-BY-SIDE PLAN COMPARISON TOOL -->
+    <section id="comparison" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Side-by-Side Floor Plan Comparison</h2>
+        <p class="section-desc">Evaluate dimensions, square footage, room counts, and estimated build costs.</p>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature Spec</th>
+              <th>Plan A: Modern Villa</th>
+              <th>Plan B: Urban High-Rise</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Total Area</td>
+              <td>2,850 sq. ft.</td>
+              <td>1,420 sq. ft.</td>
+            </tr>
+            <tr>
+              <td>Bedrooms / Baths</td>
+              <td>4 Bed / 3.5 Bath</td>
+              <td>2 Bed / 2 Bath</td>
+            </tr>
+            <tr>
+              <td>Dimensions</td>
+              <td>50' x 60'</td>
+              <td>35' x 40'</td>
+            </tr>
+            <tr>
+              <td>Estimated Build Cost</td>
+              <td>$327,750</td>
+              <td>$215,000</td>
+            </tr>
+            <tr>
+              <td>Building Code Zone</td>
+              <td>Seismic / Coastal Wind Zone 3</td>
+              <td>High-Density Urban Commercial Zone</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. COMMERCIAL & E-COMMERCE FEATURES -->
+    <section id="licensing" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Flexible Plan Licensing & Site Delivery</h2>
+        <p class="section-desc">Choose your license tier or order printed full-size (ARCH D / 24x36") site blueprints.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Single Build -->
+        <div class="price-card">
+          <span class="card-badge">Single Build</span>
+          <h3>Standard License</h3>
+          <div class="price-value">$850</div>
+          <p>Permission to construct one (1) single residential house.</p>
+          <ul class="price-features">
+            <li>✔ Stamped PDF Architectural Set</li>
+            <li>✔ Basic Structural Calculations</li>
+            <li>✔ Instant Digital Download</li>
+          </ul>
+          <button class="btn-secondary" onclick="buyLicense('Standard Single Build License')">Select Plan</button>
+        </div>
+
+        <!-- Unlimited / Builder -->
+        <div class="price-card featured">
+          <span class="card-badge">Most Popular</span>
+          <h3>Unlimited Builder License</h3>
+          <div class="price-value">$2,450</div>
+          <p>Unlimited construction rights for contractors and professional developers.</p>
+          <ul class="price-features">
+            <li>✔ Complete CAD Vector Files (.DWG / .DXF)</li>
+            <li>✔ 3D BIM Model Files (.RVT)</li>
+            <li>✔ Full Bill of Materials (BOM) Take-off</li>
+            <li>✔ Priority Builder Portal Access</li>
+          </ul>
+          <button class="btn-primary" onclick="buyLicense('Unlimited Builder License')">Select Plan</button>
+        </div>
+
+        <!-- Print-On-Demand -->
+        <div class="price-card">
+          <span class="card-badge">Job-Site Physical</span>
+          <h3>ARCH D Physical Set</h3>
+          <div class="price-value">$1,150</div>
+          <p>Includes digital files plus 5 full-size printed sets shipped to your site.</p>
+          <ul class="price-features">
+            <li>✔ 5 Sets of 24" x 36" Physical Prints</li>
+            <li>✔ Heavy-duty Waterproof Blueprint Stock</li>
+            <li>✔ Express Job-Site Delivery</li>
+          </ul>
+          <button class="btn-secondary" onclick="buyLicense('ARCH D Physical Print Package')">Select Plan</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. USER ENGAGEMENT & CLIENT COLLABORATION WORKSPACE -->
+    <section id="collaboration" class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Client & Architect Markup Workspace</h2>
+        <p class="section-desc">Click anywhere on the schematic to drop comments directly onto vector coordinates.</p>
+      </div>
+
+      <div class="markup-workspace">
+        <div id="markupBoard" class="markup-board">
+          <img src="architectural-blueprint@2x_2.jpg" alt="Blueprint for Markup" class="markup-bg-img">
+          <div id="commentPinsContainer"></div>
+        </div>
+        <div class="markup-sidebar">
+          <h3>Coordinate Pins & Feedback</h3>
+          <ul id="pinCommentList" class="pin-list">
+            <li><span class="pin-badge">Pin #1</span> <i>Kitchen Island:</i> Increase setback by 12 inches for walkway clearance.</li>
+          </ul>
+          <p class="markup-instruction">💡 <b>Instruction:</b> Click directly on the blueprint layout image to add a new markup comment pin.</p>
         </div>
       </div>
     </section>
@@ -203,8 +339,8 @@
     <section id="consultation" class="section-container">
       <div class="consultation-card">
         <div class="consultation-header">
-          <h2 class="section-title">Request Architectural Consultation</h2>
-          <p class="section-desc">Submit your project specs to receive a customized CAD blueprint proposal.</p>
+          <h2 class="section-title">Request Stamped Engineering Consultation</h2>
+          <p class="section-desc">Submit specs to connect with licensed local structural engineers for regional sign-offs.</p>
         </div>
         <form id="consultationForm" class="consultation-form" novalidate>
           <div class="form-row">
@@ -222,12 +358,12 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label for="platformScope">Project Type *</label>
+              <label for="platformScope">Project Scope *</label>
               <select id="platformScope" class="form-input">
                 <option value="">Select Project Scope...</option>
-                <option value="Residential House">Residential House Blueprint</option>
+                <option value="Residential House">Residential House Plan</option>
                 <option value="Commercial Complex">Commercial Complex</option>
-                <option value="3D Physical Model">3D Model & Rendering</option>
+                <option value="Stamped Engineering Set">PE Stamped Set</option>
               </select>
               <span class="error-msg" id="scopeError">Please select a project scope.</span>
             </div>
@@ -245,7 +381,7 @@
 
           <div class="form-group">
             <label for="specDetails">Specification Details *</label>
-            <textarea id="specDetails" class="form-input textarea-input" rows="4" placeholder="Provide details on land dimensions, room requirements, or structural preferences..."></textarea>
+            <textarea id="specDetails" class="form-input textarea-input" rows="4" placeholder="Provide details on land dimensions, seismic/wind requirements, or desired structural tweaks..."></textarea>
             <span class="error-msg" id="detailsError">Details must be at least 15 characters long.</span>
           </div>
 
@@ -256,29 +392,35 @@
 
   </main>
 
-  <!-- MODALS -->
-  <div id="lightboxModal" class="modal-overlay" aria-hidden="true">
+  <!-- MODALS & LIGHTBOX OVERLAYS -->
+  <div id="bimModal" class="modal-overlay" aria-hidden="true">
     <div class="modal-box lightbox-box">
-      <button id="lightboxClose" class="modal-close" aria-label="Close modal">&times;</button>
-      <div id="lightboxContent" class="lightbox-content"></div>
-      <p id="lightboxCaption" class="lightbox-caption"></p>
+      <button onclick="closeModal('bimModal')" class="modal-close" aria-label="Close modal">&times;</button>
+      <h3>3D WebXR / BIM Interactive Model Viewer</h3>
+      <div class="bim-viewport">
+        <img src="3d_2.jpg" alt="Interactive 3D Render" style="width:100%; border-radius: 8px;">
+      </div>
+      <p style="margin-top:1rem; font-size:0.9rem; color:var(--text-muted);">Use mouse or touch gestures to rotate 360°, pan, and inspect structural steel joints.</p>
     </div>
   </div>
 
-  <div id="specModal" class="modal-overlay" aria-hidden="true">
+  <div id="arModal" class="modal-overlay" aria-hidden="true">
     <div class="modal-box">
-      <button id="specModalClose" class="modal-close" aria-label="Close modal">&times;</button>
-      <h3 id="specModalTitle">Specification Standard</h3>
-      <hr class="modal-divider">
-      <p id="specModalBody"></p>
+      <button onclick="closeModal('arModal')" class="modal-close">&times;</button>
+      <h3>📱 Mobile AR Site Preview</h3>
+      <p style="margin: 1rem 0;">Scan this QR code with your mobile camera to project this 1:1 scale house blueprint directly onto your land parcel using WebAR.</p>
+      <div style="text-align: center; padding: 1.5rem; background: #FFF; border-radius: 8px;">
+        <div style="font-size: 5rem;">📱🔗</div>
+        <p style="color: #000; font-weight: 700; margin-top: 0.5rem;">AR Session Ready: #AR-BLUEPRINT-90210</p>
+      </div>
     </div>
   </div>
 
   <div id="successModal" class="modal-overlay" aria-hidden="true">
     <div class="modal-box">
-      <button id="successModalClose" class="modal-close" aria-label="Close modal">&times;</button>
+      <button onclick="closeModal('successModal')" class="modal-close">&times;</button>
       <div class="success-icon">✅</div>
-      <h3>Request Submitted!</h3>
+      <h3>Action Confirmed</h3>
       <p id="successModalMsg"></p>
     </div>
   </div>
@@ -291,7 +433,7 @@
       <div class="footer-brand">
         <h3>Blueprint</h3>
         <p>Precision architectural schematics, CAD floor plans, and 3D housing design models.</p>
-        <a href="https://decodlab.com" target="_blank" rel="noopener noreferrer" class="agency-link">
+        <a href="https://www.decodelabs.tech" target="_blank" rel="noopener noreferrer" class="agency-link">
           Powered by <strong>decodlab</strong>
         </a>
       </div>
@@ -299,10 +441,10 @@
       <div class="footer-links">
         <h4>Navigation</h4>
         <ul>
-          <li><a href="#hero">Overview</a></li>
-          <li><a href="#gallery">House Blueprints</a></li>
-          <li><a href="#specs">Specifications</a></li>
-          <li><a href="#consultation">Consultation</a></li>
+          <li><a href="#interactive-viewer">Interactive CAD</a></li>
+          <li><a href="#customizer">Customizer</a></li>
+          <li><a href="#comparison">Compare Plans</a></li>
+          <li><a href="#licensing">Licensing</a></li>
         </ul>
       </div>
 
