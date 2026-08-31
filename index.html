@@ -74,6 +74,60 @@
       </div>
     </section>
 
+    <!-- PARALLEL SCROLLING WORKSPACE SECTION -->
+<section id="parallel-scroll-section" class="parallel-section-wrapper">
+  <div class="section-header">
+    <h2 class="section-title">Parallel Multi-Track Blueprint Inspector</h2>
+    <p class="section-desc">Scroll to inspect synced architectural specs alongside high-res layout views.</p>
+  </div>
+
+  <div class="parallel-container">
+    <!-- LEFT TRACK: STICKY SPECIFICATION TRACK -->
+    <div class="parallel-track track-left">
+      <div class="sticky-card">
+        <span class="card-badge">Active Plan Track</span>
+        <h3 id="parallelPlanTitle">Modern Villa - Plan #01</h3>
+        <p id="parallelPlanDesc">Inspect structural steel joints, load-bearing exterior walls, and HVAC duct runs side by side.</p>
+        
+        <div class="spec-metrics">
+          <div class="metric-item">
+            <span>Area</span>
+            <strong id="parallelArea">2,850 sq ft</strong>
+          </div>
+          <div class="metric-item">
+            <span>Bed/Bath</span>
+            <strong id="parallelBeds">4 Bed / 3.5 Bath</strong>
+          </div>
+          <div class="metric-item">
+            <span>Estimated Cost</span>
+            <strong id="parallelCost">$327,750</strong>
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="buyLicense('Parallel Inspected Plan')">Order Full CAD Package</button>
+      </div>
+    </div>
+
+    <!-- RIGHT TRACK: INDEPENDENTLY SCROLLING BLUEPRINT CARDS -->
+    <div class="parallel-track track-right" id="rightScrollTrack">
+      <div class="parallel-card" data-plan="Modern Villa - Plan #01" data-area="2,850 sq ft" data-beds="4 Bed / 3.5 Bath" data-cost="$327,750">
+        <img src="my-custom-blueprint.png" alt="Blueprint Ground Floor Plan" class="parallel-card-img">
+        <div class="card-caption">Level 01: Ground Floor & Patio Access</div>
+      </div>
+
+      <div class="parallel-card" data-plan="Modern Villa - Upper Floor" data-area="1,420 sq ft" data-beds="2 Bed / 2 Bath" data-cost="$215,000">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="Blueprint Upper Floor Plan" class="parallel-card-img">
+        <div class="card-caption">Level 02: Upper Suites & Balcony</div>
+      </div>
+
+      <div class="parallel-card" data-plan="Modern Villa - MEP Overlay" data-area="2,850 sq ft" data-beds="HVAC / Elec" data-cost="$45,000 Add-on">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="BIM Mechanical Layout" class="parallel-card-img">
+        <div class="card-caption">Level 03: 3D BIM MEP Ducting Network</div>
+      </div>
+    </div>
+  </div>
+</section>
+    
     <!-- 1. CORE BLUEPRINT & VISUAL DISPLAYS -->
     <section id="interactive-viewer" class="section-container">
       <div class="section-header">
