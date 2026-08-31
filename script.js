@@ -16,6 +16,112 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
+   ADVANCED INTERACTIVE FEATURES ENGINE
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  initBeforeAfterSlider();
+  initCrosshairInspector();
+  initSvgScrollDrawing();
+});
+
+/* 1. BEFORE/AFTER SLIDER LOGIC */
+function initBeforeAfterSlider() {
+  const range = document.getElementById('baRangeInput');
+  const beforeImg = document.getElementById('baBeforeImg');
+  const divider = document.getElementById('baDivider');
+
+  if (!range || !beforeImg || !divider) return;
+
+  // Sync image container width dynamically when slider moves
+  const setSliderWidth = () => {
+    const containerWidth = range.parentElement.offsetWidth;
+    const beforeInnerImg = beforeImg.querySelector('img');
+    if (beforeInnerImg) beforeInnerImg.style.width = containerWidth + 'px';
+  };
+
+  setSliderWidth();
+  window.addEventListener('resize', setSliderWidth);
+
+  range.addEventListener('input', (e) => {
+    const val = e.target.value;
+    beforeImg.style.width = val + '%';
+    divider.style.left = val + '%';
+  });
+}
+
+/* 2. CROSSHAIR & DISTANCE METER LOGIC */
+function initCrosshairInspector() {
+  const container = document.getElementById('crosshairContainer');
+  const lineV = document.getElementById('crosshairV');
+  const lineH = document.getElementById('crosshairH');
+  const hudX = document.getElementById('hudX');
+  const hudY = document.getElementById('hudY');
+
+  if (!container) return;
+
+  container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    const x = Math.round(e.clientX - rect.left);
+    const y = Math.round(e.clientY - rect.top);
+
+    lineV.style.left = x + 'px';
+    lineH.style.top = y + 'px';
+
+    if (hudX && hudY) {
+      hudX.textContent = x;
+      hudY.textContent = y;
+    }
+  });
+}
+
+/* 4. SCROLL DRAWING ANIMATION LOGIC */
+function initSvgScrollDrawing() {
+  const paths = document.querySelectorAll('.svg-path');
+  if (!paths.length) return;
+
+  paths.forEach(path => {
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = length;
+    path.style.strokeDashoffset = length;
+  });
+
+  window.addEventListener('scroll', () => {
+    const container = document.querySelector('.svg-drawing-container');
+    if (!container) return;
+
+    const rect = container.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Calculate scroll percentage through the section
+    let scrollPercent = (windowHeight - rect.top) / (windowHeight + rect.height);
+    scrollPercent = Math.min(Math.max(scrollPercent, 0), 1);
+
+    paths.forEach(path => {
+      const length = path.getTotalLength();
+      path.style.strokeDashoffset = length * (1 - scrollPercent);
+    });
+  });
+}
+
+/* 5. MATERIAL SWAPPER LOGIC */
+function swapMaterial(btn) {
+  const preview = document.getElementById('materialPreview');
+  const tag = document.getElementById('materialTag');
+  const buttons = document.querySelectorAll('.material-btn');
+
+  if (!preview || !tag) return;
+
+  const color = btn.getAttribute('data-color');
+  const name = btn.getAttribute('data-name');
+
+  preview.style.backgroundColor = color;
+  tag.textContent = 'Finish: ' + name;
+
+  buttons.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+/* ==========================================================================
    1. THEME ENGINE
    ========================================================================== */
 function initThemeEngine() {
