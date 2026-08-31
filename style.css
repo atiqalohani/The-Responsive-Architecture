@@ -1,6 +1,57 @@
 /* ==========================================================================
    1. COLOR PALETTE & CSS CUSTOM PROPERTIES (WHITE & BLUEPRINT BLUE THEME)
    ========================================================================== */
+/* ==========================================================================
+   CUSTOM BLUEPRINT IMAGE CONTAINER STYLES
+   ========================================================================== */
+.cad-canvas-container {
+  min-height: 500px;
+  background-color: var(--blueprint-bg);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+.blueprint-canvas {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* One-Click Mirror/Reverse Layout */
+.blueprint-canvas.mirrored {
+  transform: scaleX(-1);
+}
+
+.blueprint-custom-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  max-height: 550px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+/* Layer positioning over image */
+.cad-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.cad-layer.hidden {
+  opacity: 0;
+}
 :root {
   --bg-main: #FFFFFF;
   --surface-card: #FFFFFF;
