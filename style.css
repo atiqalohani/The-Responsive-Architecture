@@ -2,7 +2,6 @@
    1. COLOR PALETTE & CSS CUSTOM PROPERTIES (WHITE & BLUEPRINT BLUE THEME)
    ========================================================================== */
 :root {
-  /* Light Theme - Clean White Background, Black Text, Blueprint Blue Filling */
   --bg-main: #FFFFFF;
   --surface-card: #FFFFFF;
   --text-main: #0D1117;
@@ -20,7 +19,6 @@
 }
 
 [data-theme="dark"] {
-  /* Dark Blueprint Theme */
   --bg-main: #0A1118;
   --surface-card: #121E2B;
   --text-main: #FFFFFF;
@@ -58,22 +56,12 @@ body {
   overflow-x: hidden;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; }
 
 /* ==========================================================================
-   3. STICKY GLASSMORPHIC HEADER & NAVIGATION
+   3. STICKY HEADER & NAVIGATION
    ========================================================================== */
 .header {
   position: sticky;
@@ -82,7 +70,6 @@ button {
   background-color: var(--header-bg);
   backdrop-filter: blur(12px);
   border-bottom: 2px solid var(--border-color);
-  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .nav-container {
@@ -101,50 +88,19 @@ button {
   font-weight: 800;
   font-size: 1.35rem;
   color: var(--primary-accent);
-  letter-spacing: -0.5px;
 }
 
-.blueprint-icon {
-  stroke: var(--primary-accent);
-}
-
-.desktop-nav .nav-links {
-  display: flex;
-  gap: 2rem;
-}
+.desktop-nav .nav-links { display: flex; gap: 1.5rem; }
 
 .nav-links a {
   font-weight: 600;
   color: var(--text-muted);
   transition: color 0.2s;
-  padding: 0.5rem 0;
-  position: relative;
 }
 
-.nav-links a:hover {
-  color: var(--primary-accent);
-}
+.nav-links a:hover { color: var(--primary-accent); }
 
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background-color: var(--primary-accent);
-  transition: width 0.2s ease;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
+.header-actions { display: flex; align-items: center; gap: 1rem; }
 
 .btn-icon, .btn-theme {
   background: var(--surface-card);
@@ -156,31 +112,12 @@ button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.2s ease;
-}
-
-.btn-icon:hover, .btn-theme:hover {
-  border-color: var(--primary-accent);
-  color: var(--primary-accent);
-  transform: translateY(-2px);
-}
-
-.shortcut-key {
-  background: var(--border-color);
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  color: var(--text-muted);
 }
 
 /* ==========================================================================
-   4. HERO BANNER WITH PARALLAX & 3D BLUEPRINT RENDERING
+   4. HERO & PARALLAX
    ========================================================================== */
-.main-wrapper {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-}
+.main-wrapper { max-width: 1280px; margin: 0 auto; padding: 2rem; }
 
 .hero-section {
   background-color: var(--surface-card);
@@ -197,30 +134,6 @@ button {
   overflow: hidden;
 }
 
-/* Subtle Blueprint Grid Pattern Overlay */
-.hero-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(var(--border-color) 1px, transparent 1px),
-                    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
-  background-size: 24px 24px;
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-.parallax-layer {
-  transition: transform 0.1s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: transform;
-}
-
-.hero-content {
-  z-index: 2;
-}
-
 .hero-pill {
   display: inline-block;
   padding: 0.4rem 1.1rem;
@@ -229,30 +142,12 @@ button {
   border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
   margin-bottom: 1.25rem;
 }
 
-.hero-title {
-  font-size: 2.75rem;
-  line-height: 1.2;
-  margin-bottom: 1.25rem;
-  font-weight: 800;
-  color: var(--text-main);
-}
-
-.hero-subtitle {
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-}
-
-.hero-cta-group {
-  display: flex;
-  gap: 1.25rem;
-  margin-bottom: 2rem;
-}
+.hero-title { font-size: 2.75rem; line-height: 1.2; margin-bottom: 1.25rem; font-weight: 800; }
+.hero-subtitle { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem; }
+.hero-cta-group { display: flex; gap: 1.25rem; margin-bottom: 2rem; }
 
 .btn-primary {
   background-color: var(--primary-accent);
@@ -265,11 +160,7 @@ button {
   display: inline-block;
 }
 
-.btn-primary:hover {
-  background-color: var(--primary-accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 85, 184, 0.25);
-}
+.btn-primary:hover { background-color: var(--primary-accent-hover); transform: translateY(-2px); }
 
 .btn-secondary {
   background-color: transparent;
@@ -282,36 +173,18 @@ button {
   display: inline-block;
 }
 
-.btn-secondary:hover {
-  border-color: var(--primary-accent);
-  color: var(--primary-accent);
-  transform: translateY(-2px);
-}
-
-.hero-image-wrapper {
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .hero-3d-img {
   width: 100%;
   max-width: 420px;
-  height: auto;
   border-radius: 12px;
   border: 3px solid var(--primary-accent);
   box-shadow: 0 16px 32px rgba(0, 85, 184, 0.2);
-  object-fit: cover;
 }
 
 .hero-stats-pills {
   grid-column: 1 / -1;
   display: flex;
-  justify-content: flex-start;
   gap: 1.5rem;
-  flex-wrap: wrap;
-  z-index: 2;
   border-top: 1px solid var(--border-color);
   padding-top: 1.5rem;
 }
@@ -319,7 +192,6 @@ button {
 .pill-stat {
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--text-muted);
   background-color: var(--bg-main);
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -327,274 +199,292 @@ button {
 }
 
 /* ==========================================================================
-   5. SECTION LAYOUTS & BLUEPRINT GALLERY
+   5. INTERACTIVE CAD PLAN VIEWER & LAYERS
    ========================================================================== */
-.section-container {
-  margin-bottom: 4rem;
-}
+.section-container { margin-bottom: 4rem; }
+.section-header { text-align: center; margin-bottom: 2rem; }
+.section-title { font-size: 2.25rem; font-weight: 800; margin-bottom: 0.5rem; }
+.section-desc { color: var(--text-muted); font-size: 1.05rem; }
 
-.section-header {
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.section-title {
-  font-size: 2.25rem;
-  margin-bottom: 0.5rem;
-  font-weight: 800;
-}
-
-.section-desc {
-  color: var(--text-muted);
-  font-size: 1.05rem;
-}
-
-.filter-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  background-color: var(--surface-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-main);
-  padding: 0.6rem 1.3rem;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-.filter-btn.active, .filter-btn:hover {
-  background-color: var(--primary-accent);
-  color: #FFFFFF;
-  border-color: var(--primary-accent);
-}
-
-/* Gallery Grid */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
-.gallery-card {
+.cad-viewer-box {
   background-color: var(--surface-card);
   border: 2px solid var(--border-color);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: var(--card-shadow);
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.gallery-card:hover {
-  transform: translateY(-6px);
+.cad-toolbar {
+  background-color: var(--input-bg);
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.toolbar-group { display: flex; align-items: center; gap: 0.5rem; }
+.toolbar-label { font-size: 0.85rem; font-weight: 700; margin-right: 0.5rem; }
+
+.layer-toggle {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--surface-card);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.layer-toggle.active {
+  background: var(--primary-accent);
+  color: #FFF;
   border-color: var(--primary-accent);
-  box-shadow: 0 16px 32px rgba(0, 85, 184, 0.15);
 }
 
-.card-image-wrap {
+.btn-tool {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--surface-card);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.cad-canvas-container {
+  height: 450px;
+  background-color: #003F8A; /* Classic Blueprint Blue Canvas */
   position: relative;
-  height: 220px;
-  background-color: var(--blueprint-bg);
-  overflow: hidden;
-}
-
-.card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.gallery-card:hover .card-img {
-  transform: scale(1.05);
-}
-
-.gallery-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 85, 184, 0.85);
-  color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 0.25s ease;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.blueprint-canvas {
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  position: relative;
+  transition: transform 0.4s ease;
+}
+
+.blueprint-canvas.mirrored {
+  transform: scaleX(-1);
+}
+
+.cad-layer {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  transition: opacity 0.3s ease;
+}
+
+.cad-layer.hidden { opacity: 0; pointer-events: none; }
+
+.room {
+  position: absolute;
+  border: 2px solid #FFF;
+  color: #FFF;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
 }
 
-.gallery-card:hover .gallery-overlay {
-  opacity: 1;
-}
+.room-living { top: 10%; left: 10%; width: 40%; height: 40%; }
+.room-kitchen { top: 10%; left: 55%; width: 35%; height: 40%; }
+.room-master { top: 55%; left: 10%; width: 80%; height: 35%; }
 
-.gallery-info {
-  padding: 1.5rem;
-}
-
-.card-tag {
+.mep-conduit {
+  position: absolute;
   font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--primary-accent);
-  font-weight: 800;
-}
-
-.gallery-info h3 {
-  margin: 0.4rem 0;
-  font-size: 1.2rem;
   font-weight: 700;
+  color: #38BDF8;
+  padding: 4px;
 }
 
-.gallery-info p {
-  color: var(--text-muted);
-  font-size: 0.925rem;
+.conduit-elec { top: 25%; left: 15%; border-bottom: 2px dotted #38BDF8; width: 70%; }
+.conduit-plumb { top: 70%; left: 15%; border-bottom: 2px dotted #0088FF; width: 70%; }
+
+.steel-beam {
+  position: absolute;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #EF4444;
 }
+
+.beam-1 { top: 5%; left: 50%; height: 90%; border-left: 3px dashed #EF4444; }
+.beam-2 { top: 52%; left: 5%; width: 90%; border-top: 3px dashed #EF4444; }
+
+.legend-popover {
+  background: var(--surface-card);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+  box-shadow: var(--card-shadow);
+}
+
+.legend-popover.hidden { display: none; }
+
+.legend-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.legend-symbol { width: 24px; height: 4px; display: inline-block; }
+.sym-wall { background: var(--text-main); }
+.sym-mep { background: #38BDF8; border-top: 2px dotted #38BDF8; }
+.sym-steel { background: #EF4444; border-top: 2px dashed #EF4444; }
 
 /* ==========================================================================
-   6. SEARCH & CONTENT CARDS
+   6. 3D BIM & WALKTHROUGH CARDS
    ========================================================================== */
-.search-box-container {
-  position: relative;
-  max-width: 650px;
-  margin: 0 auto 2.5rem auto;
-}
+.bim-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 
-.search-input {
-  width: 100%;
-  padding: 1rem 1.25rem 1rem 3.2rem;
-  border-radius: 10px;
+.bim-card {
+  background: var(--surface-card);
   border: 2px solid var(--border-color);
-  background-color: var(--input-bg);
-  color: var(--text-main);
-  font-size: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
   box-shadow: var(--card-shadow);
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.search-input:focus {
-  border-color: var(--primary-accent);
-  box-shadow: 0 0 0 3px rgba(0, 85, 184, 0.15);
-}
+.bim-img { width: 100%; height: 240px; object-fit: cover; }
+.bim-info { padding: 1.5rem; }
+.bim-info h3 { margin-bottom: 0.5rem; font-size: 1.25rem; }
+.bim-info p { color: var(--text-muted); margin-bottom: 1.25rem; font-size: 0.95rem; }
 
-.search-icon-inside {
-  position: absolute;
-  left: 1.1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-muted);
-  font-size: 1.1rem;
-}
-
-.specs-grid {
+/* ==========================================================================
+   7. CUSTOMIZER & ESTIMATOR
+   ========================================================================== */
+.customizer-wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
-.spec-card {
-  background-color: var(--surface-card);
+.customizer-box {
+  background: var(--surface-card);
   border: 2px solid var(--border-color);
   border-radius: 12px;
-  padding: 1.75rem;
+  padding: 2rem;
+  box-shadow: var(--card-shadow);
+}
+
+.custom-option { margin-top: 0.75rem; font-weight: 600; font-size: 0.95rem; }
+
+.zip-input-group, .lot-checker-form {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--input-bg);
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.cost-breakdown-card {
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+
+.cost-row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.95rem; }
+.cost-total { font-size: 1.15rem; color: var(--primary-accent); font-weight: 800; }
+
+.lot-status, .sun-status {
+  margin-top: 0.75rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--primary-accent);
+}
+
+/* ==========================================================================
+   8. COMPARISON TABLE & PRICING
+   ========================================================================== */
+.comparison-table-wrapper {
+  background: var(--surface-card);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  overflow-x: auto;
+  box-shadow: var(--card-shadow);
+}
+
+.comparison-table { width: 100%; border-collapse: collapse; text-align: left; }
+.comparison-table th, .comparison-table td { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-color); }
+.comparison-table th { background: var(--input-bg); font-size: 1rem; }
+
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+.price-card {
+  background: var(--surface-card);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
   box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
-.card-badge {
-  align-self: flex-start;
-  padding: 0.25rem 0.65rem;
-  background-color: rgba(0, 85, 184, 0.1);
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--primary-accent);
-  margin-bottom: 0.75rem;
-}
-
-.spec-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
-  font-weight: 700;
-}
-
-.spec-card p {
-  color: var(--text-muted);
-  font-size: 0.925rem;
-  margin-bottom: 1.5rem;
-}
-
-.btn-card-action {
-  background-color: transparent;
-  border: 2px solid var(--border-color);
-  color: var(--primary-accent);
-  padding: 0.6rem;
-  border-radius: 6px;
-  font-weight: 700;
-  transition: all 0.2s ease;
-  width: 100%;
-}
-
-.btn-card-action:hover {
-  background-color: var(--primary-accent);
-  color: #FFFFFF;
-  border-color: var(--primary-accent);
-}
+.price-card.featured { border-color: var(--primary-accent); transform: scale(1.03); }
+.card-badge { font-size: 0.75rem; font-weight: 800; color: var(--primary-accent); text-transform: uppercase; }
+.price-value { font-size: 2.5rem; font-weight: 800; margin: 0.75rem 0; color: var(--primary-accent); }
+.price-features { margin: 1.5rem 0; font-size: 0.9rem; display: flex; flex-direction: column; gap: 0.5rem; }
 
 /* ==========================================================================
-   7. DASHBOARD METRICS & CONSULTATION PORTAL
+   9. MARKUP WORKSPACE & CONSULTATION
    ========================================================================== */
-.metrics-wrapper {
-  background-color: var(--surface-card);
+.markup-workspace {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  background: var(--surface-card);
   border: 2px solid var(--border-color);
-  border-radius: 16px;
-  padding: 3rem;
+  border-radius: 12px;
+  padding: 1.5rem;
   box-shadow: var(--card-shadow);
 }
 
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  text-align: center;
-}
+.markup-board { position: relative; cursor: crosshair; overflow: hidden; border-radius: 8px; }
+.markup-bg-img { width: 100%; display: block; border-radius: 8px; }
 
-.metric-card {
-  padding: 1.5rem;
-  background-color: var(--bg-main);
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-}
-
-.metric-value {
-  font-size: 3.25rem;
+.comment-pin {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: #DC2626;
+  color: #FFF;
+  border-radius: 50%;
+  font-size: 0.75rem;
   font-weight: 800;
-  color: var(--primary-accent);
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  border: 2px solid #FFF;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-.metric-unit {
-  font-size: 0.9rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: var(--text-main);
-}
-
-.metric-label {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  font-weight: 500;
-}
+.pin-list { margin-top: 1rem; font-size: 0.9rem; }
+.pin-badge { background: #DC2626; color: #FFF; padding: 2px 6px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; }
+.markup-instruction { margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted); }
 
 .consultation-card {
   background-color: var(--surface-card);
@@ -606,94 +496,24 @@ button {
   margin: 0 auto;
 }
 
-.consultation-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.consultation-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.form-group label {
-  font-size: 0.875rem;
-  font-weight: 700;
-}
-
-.form-input {
-  padding: 0.85rem 1rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background-color: var(--input-bg);
-  color: var(--text-main);
-  font-size: 0.95rem;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.form-input:focus {
-  border-color: var(--primary-accent);
-}
-
-.textarea-input {
-  resize: vertical;
-}
-
-.error-msg {
-  color: #DC2626;
-  font-size: 0.75rem;
-  display: none;
-  font-weight: 600;
-}
-
-.form-group.invalid .error-msg {
-  display: block;
-}
-
-.form-group.invalid .form-input {
-  border-color: #DC2626;
-}
-
-.btn-submit {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1rem;
-}
+.form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+.error-msg { color: #DC2626; font-size: 0.75rem; display: none; font-weight: 600; }
+.form-group.invalid .error-msg { display: block; }
+.form-group.invalid .form-input { border-color: #DC2626; }
 
 /* ==========================================================================
-   8. MODALS & LIGHTBOX
+   10. MODALS, FOOTER & RESPONSIVE
    ========================================================================== */
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background-color: var(--modal-overlay-bg);
   backdrop-filter: blur(6px);
-  display: none;
-  align-items: center;
-  justify-content: center;
+  display: none; align-items: center; justify-content: center;
   z-index: 2000;
 }
 
-.modal-overlay.active {
-  display: flex;
-}
+.modal-overlay.active { display: flex; }
 
 .modal-box {
   background-color: var(--surface-card);
@@ -706,209 +526,43 @@ button {
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
 }
 
-.lightbox-box {
-  max-width: 850px;
-  padding: 1.5rem;
-}
-
-.lightbox-content {
-  width: 100%;
-  min-height: 350px;
-  background-color: var(--blueprint-bg);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.lightbox-content img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.lightbox-caption {
-  margin-top: 1rem;
-  text-align: center;
-  font-weight: 700;
-  color: var(--text-main);
-}
-
 .modal-close {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  background: none;
-  border: none;
-  font-size: 1.85rem;
-  color: var(--text-main);
+  position: absolute; top: 15px; right: 20px;
+  background: none; border: none; font-size: 1.85rem; color: var(--text-main);
 }
 
-.modal-divider {
-  border: 0;
-  height: 1px;
-  background-color: var(--border-color);
-  margin: 1rem 0;
-}
-
-.success-icon {
-  font-size: 3rem;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-/* Floating Back-to-Top Button */
 .back-to-top {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: var(--primary-accent);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.25rem;
-  border-radius: 50px;
-  font-weight: 700;
-  box-shadow: 0 8px 20px rgba(0, 85, 184, 0.3);
-  display: none;
-  z-index: 999;
-  transition: all 0.2s ease;
+  position: fixed; bottom: 30px; right: 30px;
+  background-color: var(--primary-accent); color: white;
+  border: none; padding: 0.75rem 1.25rem; border-radius: 50px;
+  font-weight: 700; box-shadow: 0 8px 20px rgba(0, 85, 184, 0.3);
+  display: none; z-index: 999;
 }
 
-.back-to-top:hover {
-  transform: translateY(-3px);
-  background-color: var(--primary-accent-hover);
-}
+.back-to-top.visible { display: block; }
 
-.back-to-top.visible {
-  display: block;
-}
-
-/* ==========================================================================
-   9. FOOTER & CREDITS
-   ========================================================================== */
 .footer {
   background-color: var(--surface-card);
   border-top: 2px solid var(--border-color);
-  margin-top: 5rem;
-  padding: 4rem 2rem 2rem 2rem;
+  margin-top: 5rem; padding: 4rem 2rem 2rem 2rem;
 }
 
 .footer-container {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
-}
-
-.footer-brand h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.75rem;
-  color: var(--primary-accent);
-  font-weight: 800;
-}
-
-.footer-brand p {
-  color: var(--text-muted);
-  margin-bottom: 1.25rem;
-}
-
-.agency-link {
-  display: inline-block;
-  color: var(--primary-accent);
-  font-size: 0.95rem;
-  transition: opacity 0.2s ease;
-}
-
-.agency-link:hover {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-
-.status-indicator {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background-color: #10B981;
-  border-radius: 50%;
-}
-
-.footer-links h4, .footer-contact h4 {
-  margin-bottom: 1rem;
-  font-weight: 700;
-}
-
-.footer-links ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.footer-links a {
-  color: var(--text-muted);
-}
-
-.footer-links a:hover {
-  color: var(--primary-accent);
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem;
 }
 
 .footer-bottom {
-  max-width: 1280px;
-  margin: 0 auto;
-  border-top: 1px solid var(--border-color);
-  padding-top: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  font-size: 0.875rem;
-  color: var(--text-muted);
+  max-width: 1280px; margin: 0 auto;
+  border-top: 1px solid var(--border-color); padding-top: 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; font-size: 0.875rem; color: var(--text-muted);
 }
 
-.credit-tag {
-  font-weight: 700;
-  color: var(--primary-accent);
-}
+.credit-tag { font-weight: 700; color: var(--primary-accent); }
 
-/* RESPONSIVE LAYOUT BREAKPOINTS */
 @media (max-width: 1024px) {
-  .hero-section {
-    grid-template-columns: 1fr;
-  }
-  .specs-grid, .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .footer-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 640px) {
-  .specs-grid, .gallery-grid, .metrics-grid {
-    grid-template-columns: 1fr;
-  }
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-  .hero-title {
-    font-size: 2rem;
-  }
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-  }
+  .hero-section, .customizer-wrapper, .markup-workspace { grid-template-columns: 1fr; }
+  .pricing-grid, .bim-grid { grid-template-columns: 1fr; }
+  .footer-container { grid-template-columns: 1fr; }
 }
