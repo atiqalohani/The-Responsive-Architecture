@@ -1,32 +1,27 @@
 /**
- * Blueprint Application Engine
- * Pure Vanilla JavaScript implementation with Parallax Scroll Support.
+ * Blueprint Next-Gen CAD Engine
+ * Fully modular implementation including Layer Toggles, Cost Estimator, Sun-Path, Markup Pins & AR.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initThemeEngine();
-  initGalleryFilters();
-  initSpecsSearch();
-  initMetricsCounter();
-  initConsultationForm();
+  initCadLayerToggles();
+  initMirrorAndLegend();
+  initCustomizerAndEstimator();
+  initMarkupWorkspace();
   initScrollAndShortcuts();
-  initModalListeners();
   initParallaxEngine();
+  initConsultationForm();
 });
 
 /* ==========================================================================
-   1. LIGHT / DARK THEME ENGINE
+   1. THEME ENGINE
    ========================================================================== */
 function initThemeEngine() {
   const themeToggleBtn = document.getElementById('themeToggleBtn');
   if (!themeToggleBtn) return;
 
-  const themeIcon = themeToggleBtn.querySelector('.theme-icon');
-  const themeLabel = themeToggleBtn.querySelector('.theme-label');
-
-  const savedTheme = localStorage.getItem('theme_preference') || 
-    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
+  const savedTheme = localStorage.getItem('theme_preference') || 'light';
   applyTheme(savedTheme);
 
   themeToggleBtn.addEventListener('click', () => {
@@ -38,274 +33,184 @@ function initThemeEngine() {
 
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
-    if (theme === 'dark') {
-      if (themeIcon) themeIcon.textContent = '☀️';
-      if (themeLabel) themeLabel.textContent = 'Light Mode';
-    } else {
-      if (themeIcon) themeIcon.textContent = '🌙';
-      if (themeLabel) themeLabel.textContent = 'Dark Mode';
-    }
   }
 }
 
 /* ==========================================================================
-   2. PARALLAX SCROLLING CONTROLLER
+   2. INTERACTIVE CAD LAYER TOGGLES & REVERSE PLAN
    ========================================================================== */
-function initParallaxEngine() {
-  const parallaxLayers = document.querySelectorAll('.parallax-layer');
-  if (!parallaxLayers.length) return;
+function initCadLayerToggles() {
+  const layerBtns = document.querySelectorAll('.layer-toggle');
 
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-
-    parallaxLayers.forEach(layer => {
-      const speed = parseFloat(layer.getAttribute('data-speed')) || 0.1;
-      const yPos = -(scrolled * speed);
-      layer.style.transform = `translate3d(0px, ${yPos}px, 0px)`;
-    });
-  });
-}
-
-/* ==========================================================================
-   3. GALLERY FILTER & LIGHTBOX MODAL
-   ========================================================================== */
-function initGalleryFilters() {
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const galleryCards = document.querySelectorAll('.gallery-card');
-
-  filterBtns.forEach(btn => {
+  layerBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      btn.classList.toggle('active');
+      const layerName = btn.getAttribute('data-layer');
+      const layerTarget = document.querySelector(`.layer-${layerName}`);
 
-      const category = btn.getAttribute('data-category');
-
-      galleryCards.forEach(card => {
-        if (category === 'all' || card.getAttribute('data-category') === category) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // Lightbox View Handler
-  galleryCards.forEach(card => {
-    card.addEventListener('click', () => {
-      const img = card.querySelector('img');
-      const title = card.querySelector('h3').textContent;
-
-      if (!img) return;
-
-      const lightboxContent = document.getElementById('lightboxContent');
-      const lightboxCaption = document.getElementById('lightboxCaption');
-
-      lightboxContent.innerHTML = `<img src="${img.src}" alt="${img.alt}" style="max-width:100%; max-height: 80vh;">`;
-      lightboxCaption.textContent = title + " — Architectural Blueprint View";
-
-      openModal('lightboxModal');
-    });
-  });
-}
-
-/* ==========================================================================
-   4. REAL-TIME SEARCH FILTER FOR SPECIFICATIONS
-   ========================================================================== */
-function initSpecsSearch() {
-  const searchInput = document.getElementById('searchInput');
-  const specCards = document.querySelectorAll('.spec-card');
-
-  if (!searchInput) return;
-
-  searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase().trim();
-
-    specCards.forEach(card => {
-      const title = (card.getAttribute('data-title') || '').toLowerCase();
-      const tags = (card.getAttribute('data-tags') || '').toLowerCase();
-      const textContent = card.innerText.toLowerCase();
-
-      if (title.includes(query) || tags.includes(query) || textContent.includes(query)) {
-        card.style.display = 'flex';
-      } else {
-        card.style.display = 'none';
+      if (layerTarget) {
+        layerTarget.classList.toggle('hidden', !btn.classList.contains('active'));
       }
     });
   });
 }
 
-/* ==========================================================================
-   5. ANIMATED METRICS COUNTER
-   ========================================================================== */
-function initMetricsCounter() {
-  const metricValues = document.querySelectorAll('.metric-value');
-  let animated = false;
+function initMirrorAndLegend() {
+  const mirrorBtn = document.getElementById('mirrorPlanBtn');
+  const blueprintCanvas = document.getElementById('blueprintCanvas');
+  const legendBtn = document.getElementById('legendToggleBtn');
+  const legendBox = document.getElementById('legendBox');
+  const arBtn = document.getElementById('arPreviewBtn');
 
-  window.addEventListener('scroll', () => {
-    const metricsSection = document.getElementById('metrics');
-    if (!metricsSection) return;
+  mirrorBtn?.addEventListener('click', () => {
+    blueprintCanvas?.classList.toggle('mirrored');
+  });
 
-    const sectionPos = metricsSection.getBoundingClientRect().top;
-    const screenPos = window.innerHeight / 1.3;
+  legendBtn?.addEventListener('click', () => {
+    legendBox?.classList.toggle('hidden');
+  });
 
-    if (sectionPos < screenPos && !animated) {
-      animated = true;
-      metricValues.forEach(counter => {
-        const target = +counter.getAttribute('data-target');
-        let count = 0;
-        const increment = target / 30;
-
-        const updateCount = () => {
-          count += increment;
-          if (count < target) {
-            counter.innerText = Math.ceil(count);
-            setTimeout(updateCount, 40);
-          } else {
-            counter.innerText = target;
-          }
-        };
-        updateCount();
-      });
-    }
+  arBtn?.addEventListener('click', () => {
+    openModal('arModal');
   });
 }
 
 /* ==========================================================================
-   6. CONSULTATION FORM CLIENT VALIDATION
+   3. PLAN CUSTOMIZER, REGIONAL ESTIMATOR & SUN-PATH
+   ========================================================================== */
+function calculateCustomCost() {
+  let addonTotal = 0;
+  const garage = document.getElementById('optGarage');
+  const patio = document.getElementById('optPatio');
+  const roof = document.getElementById('optRoof');
+  const zipInput = document.getElementById('zipCodeInput');
+
+  if (garage?.checked) addonTotal += parseFloat(garage.getAttribute('data-cost'));
+  if (patio?.checked) addonTotal += parseFloat(patio.getAttribute('data-cost'));
+  if (roof?.checked) addonTotal += parseFloat(roof.getAttribute('data-cost'));
+
+  // Calculate Zip-Code Regional Multiplier
+  let multiplier = 1.15;
+  const zipVal = zipInput?.value.trim() || '';
+  if (zipVal.startsWith('9')) multiplier = 1.25; // West Coast
+  if (zipVal.startsWith('1')) multiplier = 1.20; // East Coast
+  if (zipVal.startsWith('7')) multiplier = 1.05; // Southern Region
+
+  const baseCost = 285000;
+  const total = (baseCost + addonTotal) * multiplier;
+
+  document.getElementById('addonCost').textContent = `$${addonTotal.toLocaleString()}`;
+  document.getElementById('zipMultiplier').textContent = `${multiplier.toFixed(2)}x`;
+  document.getElementById('totalEstimatedCost').textContent = `$${Math.round(total).toLocaleString()}`;
+}
+
+function checkLotCompatibility() {
+  const width = parseFloat(document.getElementById('plotWidth').value);
+  const depth = parseFloat(document.getElementById('plotDepth').value);
+  const statusElem = document.getElementById('lotStatus');
+
+  if (width >= 50 && depth >= 80) {
+    statusElem.textContent = "✅ Excellent Fit! This plot exceeds the minimum setback requirements for Plan A.";
+    statusElem.style.color = "#10B981";
+  } else {
+    statusElem.textContent = "⚠️ Plot Warning: Minimum required plot dimensions for Plan A are 50' x 80'. Minor custom downsizing required.";
+    statusElem.style.color = "#DC2626";
+  }
+}
+
+function updateSunPath(hour) {
+  const status = document.getElementById('sunPathStatus');
+  let text = "";
+  if (hour < 9) text = `🌅 Early Morning (${hour}:00 AM) — Warm east-facing light on Master Suite.`;
+  else if (hour <= 14) text = `☀️ Midday / Peak Sun (${hour}:00 PM) — High direct overhead sunlight on living space roof.`;
+  else text = `🌇 Late Afternoon (${hour}:00 PM) — Low west-facing natural light entering kitchen patio.`;
+
+  if (status) status.textContent = text;
+}
+
+/* ==========================================================================
+   4. CLIENT MARKUP & COORDINATE PIN WORKSPACE
+   ========================================================================== */
+function initMarkupWorkspace() {
+  const markupBoard = document.getElementById('markupBoard');
+  const pinContainer = document.getElementById('commentPinsContainer');
+  const pinList = document.getElementById('pinCommentList');
+  let pinCount = 1;
+
+  markupBoard?.addEventListener('click', (e) => {
+    const rect = markupBoard.getBoundingClientRect();
+    const xPercent = ((e.clientX - rect.left) / rect.width) * 100;
+    const yPercent = ((e.clientY - rect.top) / rect.height) * 100;
+
+    pinCount++;
+
+    // Create Visual Pin
+    const pin = document.createElement('div');
+    pin.className = 'comment-pin';
+    pin.style.left = `${xPercent}%`;
+    pin.style.top = `${yPercent}%`;
+    pin.textContent = pinCount;
+    pinContainer?.appendChild(pin);
+
+    // Append to Sidebar
+    const commentText = prompt("Enter architectural comment for this coordinate pin:") || "General review area.";
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `<span class="pin-badge">Pin #${pinCount}</span> <i>Pos (${Math.round(xPercent)}%, ${Math.round(yPercent)}%):</i> ${commentText}`;
+    pinList?.appendChild(listItem);
+  });
+}
+
+/* ==========================================================================
+   5. E-COMMERCE & BOM UTILITIES
+   ========================================================================== */
+function buyLicense(planName) {
+  document.getElementById('successModalMsg').innerText = 
+    `You selected the "${planName}". Instant digital .DWG CAD downloads and receipt sent to your email.`;
+  openModal('successModal');
+}
+
+function downloadBOM() {
+  document.getElementById('successModalMsg').innerText = 
+    `Downloading complete Bill of Materials (BOM) Take-off sheet (.CSV / .PDF) with structural steel, concrete volume, and framing metrics.`;
+  openModal('successModal');
+}
+
+/* ==========================================================================
+   6. CONSULTATION FORM & UTILITIES
    ========================================================================== */
 function initConsultationForm() {
   const form = document.getElementById('consultationForm');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', (e) => {
     e.preventDefault();
-    let isValid = true;
+    const name = document.getElementById('fullName').value.trim();
+    if (name.length < 2) return;
 
-    const nameInput = document.getElementById('fullName');
-    const emailInput = document.getElementById('workEmail');
-    const scopeInput = document.getElementById('platformScope');
-    const budgetInput = document.getElementById('budgetRange');
-    const detailsInput = document.getElementById('specDetails');
-
-    // Name Validation
-    if (nameInput.value.trim().length < 2) {
-      setError(nameInput);
-      isValid = false;
-    } else {
-      clearError(nameInput);
-    }
-
-    // Email Validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(emailInput.value.trim())) {
-      setError(emailInput);
-      isValid = false;
-    } else {
-      clearError(emailInput);
-    }
-
-    // Scope Validation
-    if (scopeInput.value === '') {
-      setError(scopeInput);
-      isValid = false;
-    } else {
-      clearError(scopeInput);
-    }
-
-    // Budget Validation
-    if (budgetInput.value === '') {
-      setError(budgetInput);
-      isValid = false;
-    } else {
-      clearError(budgetInput);
-    }
-
-    // Details Validation
-    if (detailsInput.value.trim().length < 15) {
-      setError(detailsInput);
-      isValid = false;
-    } else {
-      clearError(detailsInput);
-    }
-
-    if (isValid) {
-      document.getElementById('successModalMsg').innerText = 
-        `Thank you, ${nameInput.value}! Your request for "${scopeInput.value}" with budget "${budgetInput.value}" has been logged successfully.`;
-      openModal('successModal');
-      form.reset();
-    }
+    document.getElementById('successModalMsg').innerText = 
+      `Thank you, ${name}! Your architectural consultation and engineering stamp request has been logged.`;
+    openModal('successModal');
+    form.reset();
   });
-
-  function setError(inputElem) {
-    inputElem.parentElement.classList.add('invalid');
-  }
-
-  function clearError(inputElem) {
-    inputElem.parentElement.classList.remove('invalid');
-  }
 }
 
-/* ==========================================================================
-   7. SCROLL & KEYBOARD SHORTCUT HANDLERS
-   ========================================================================== */
+function initParallaxEngine() {
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    document.querySelectorAll('.parallax-layer').forEach(layer => {
+      const speed = parseFloat(layer.getAttribute('data-speed')) || 0.1;
+      layer.style.transform = `translate3d(0px, ${-(scrolled * speed)}px, 0px)`;
+    });
+  });
+}
+
 function initScrollAndShortcuts() {
   const backToTopBtn = document.getElementById('backToTopBtn');
-  const searchInput = document.getElementById('searchInput');
-  const searchShortcutBtn = document.getElementById('searchShortcutBtn');
-
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
-      backToTopBtn?.classList.add('visible');
-    } else {
-      backToTopBtn?.classList.remove('visible');
-    }
+    if (window.scrollY > 400) backToTopBtn?.classList.add('visible');
+    else backToTopBtn?.classList.remove('visible');
   });
 
   backToTopBtn?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  searchShortcutBtn?.addEventListener('click', () => {
-    if (searchInput) {
-      searchInput.focus();
-      searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  });
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === '/' && document.activeElement !== searchInput) {
-      e.preventDefault();
-      if (searchInput) {
-        searchInput.focus();
-        searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }
-  });
-}
-
-/* ==========================================================================
-   8. MODAL UTILITIES
-   ========================================================================== */
-function initModalListeners() {
-  document.getElementById('lightboxClose')?.addEventListener('click', () => closeModal('lightboxModal'));
-  document.getElementById('specModalClose')?.addEventListener('click', () => closeModal('specModal'));
-  document.getElementById('successModalClose')?.addEventListener('click', () => closeModal('successModal'));
-
-  document.querySelectorAll('.modal-overlay').forEach(overlay => {
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) {
-        closeModal(overlay.id);
-      }
-    });
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.modal-overlay.active').forEach(modal => {
-        closeModal(modal.id);
-      });
-    }
   });
 }
 
@@ -313,7 +218,6 @@ function openModal(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) {
     modal.classList.add('active');
-    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
 }
@@ -322,15 +226,6 @@ function closeModal(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) {
     modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
-}
-
-function openSpecModal(title, body) {
-  const specTitle = document.getElementById('specModalTitle');
-  const specBody = document.getElementById('specModalBody');
-  if (specTitle) specTitle.innerText = title;
-  if (specBody) specBody.innerText = body;
-  openModal('specModal');
 }
