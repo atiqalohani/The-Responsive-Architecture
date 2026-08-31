@@ -1,323 +1,322 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blueprint | Strategic Web Architecture Framework</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Blueprint — Architectural Crafts & Design</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Sticky Glassmorphic Header & Navigation -->
+  <!-- HEADER & NAVIGATION -->
   <header class="header">
     <div class="nav-container">
-      <div class="brand-logo">
-        <span class="brand-icon">📐</span>
-        <span class="brand-title">Blueprint</span>
-      </div>
+      <a href="#" class="brand-logo">
+        <svg class="blueprint-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" />
+          <line x1="3" y1="9" x2="21" y2="9" />
+          <line x1="9" y1="21" x2="9" y2="9" />
+        </svg>
+        <span>Blueprint</span>
+      </a>
+
       <nav class="desktop-nav">
         <ul class="nav-links">
           <li><a href="#hero">Overview</a></li>
-          <li><a href="#gallery">Blueprints</a></li>
-          <li><a href="#specifications">Specifications</a></li>
-          <li><a href="#metrics">Metrics</a></li>
+          <li><a href="#gallery">House Blueprints</a></li>
+          <li><a href="#specs">Specifications</a></li>
+          <li><a href="#metrics">Analytics</a></li>
           <li><a href="#consultation">Consultation</a></li>
         </ul>
       </nav>
+
       <div class="header-actions">
         <button id="searchShortcutBtn" class="btn-icon" aria-label="Quick Search">
-          🔍 <span class="shortcut-text">Search (/)</span>
+          <span>🔍</span>
+          <kbd class="shortcut-key">/</kbd>
         </button>
-        <button id="themeToggleBtn" class="btn-theme" aria-label="Toggle Dark/Light Mode">
-          <span class="theme-icon">🌙</span> <span class="theme-label">Dark Mode</span>
+        <button id="themeToggleBtn" class="btn-theme">
+          <span class="theme-icon">🌙</span>
+          <span class="theme-label">Dark Mode</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Main Web Content Container -->
+  <!-- MAIN WRAPPER -->
   <main class="main-wrapper">
 
-    <!-- Hero Banner Section -->
-    <section id="hero" class="hero-section">
-      <div class="hero-content">
-        <div class="hero-pill">DecodeLabs Industrial Architecture Track</div>
-        <h1 class="hero-title">Build the Future: Strategic Web Architecture Framework</h1>
+    <!-- HERO BANNER WITH 3D RENDERING -->
+    <section id="hero" class="hero-section parallax-container">
+      <div class="hero-content parallax-layer" data-speed="0.15">
+        <span class="hero-pill">Architectural Precision</span>
+        <h1 class="hero-title">Engineering Next-Gen Architectural Blueprints</h1>
         <p class="hero-subtitle">
-          Constructing robust, scalable web systems using pure semantic HTML5, fluid 2D CSS Grid macro layouts, and vanilla JavaScript state management without framework overhead.
+          Explore interactive CAD layouts, 3D architectural renderings, and structural schematics engineered for precision housing and modern urban development.
         </p>
         <div class="hero-cta-group">
-          <a href="#gallery" class="btn-primary">Explore Blueprints</a>
-          <a href="#consultation" class="btn-secondary">Request Custom Architecture</a>
+          <a href="#gallery" class="btn-primary">Explore Schematics</a>
+          <a href="#consultation" class="btn-secondary">Request Consultation</a>
         </div>
-        <div class="hero-stats-pills">
-          <span class="pill-stat"><strong>Standard:</strong> Pure Vanilla Engine</span>
-          <span class="pill-stat"><strong>Layout:</strong> Mobile-First to 4K</span>
-          <span class="pill-stat"><strong>Compliance:</strong> WCAG 2.1 AA</span>
-        </div>
+      </div>
+
+      <!-- 3D BLUEPRINT RENDERING HERO IMAGE -->
+      <div class="hero-image-wrapper parallax-layer" data-speed="-0.1">
+        <img src="3d_2.jpg" alt="3D Architectural High-Rise Blueprint Model" class="hero-3d-img">
+      </div>
+
+      <div class="hero-stats-pills">
+        <span class="pill-stat">📐 1:100 Scale Precision</span>
+        <span class="pill-stat">🏢 3D BIM Compatible</span>
+        <span class="pill-stat">⚡ Instant Vector Export</span>
       </div>
     </section>
 
-    <!-- Architecture Showcase & Blueprint Gallery -->
+    <!-- BLUEPRINT GALLERY SECTION -->
     <section id="gallery" class="section-container">
       <div class="section-header">
-        <h2 class="section-title">Architecture Showcase & Blueprint Gallery</h2>
-        <p class="section-desc">Explore macro layouts, UI component structures, and database schemas.</p>
+        <h2 class="section-title">House Blueprint Gallery</h2>
+        <p class="section-desc">Browse architectural blueprints, 3D interior models, and spatial floor plans.</p>
       </div>
 
-      <!-- Filter Tabs -->
       <div class="filter-tabs">
-        <button class="filter-btn active" data-category="all">All Web Blueprints</button>
-        <button class="filter-btn" data-category="ui-systems">UI Systems</button>
-        <button class="filter-btn" data-category="macro-layouts">Macro Layouts</button>
-        <button class="filter-btn" data-category="database">Database Schemas</button>
+        <button class="filter-btn active" data-category="all">All Blueprints</button>
+        <button class="filter-btn" data-category="residential">Residential Houses</button>
+        <button class="filter-btn" data-category="commercial">Commercial Buildings</button>
+        <button class="filter-btn" data-category="model">3D Physical Models</button>
       </div>
 
-      <!-- Gallery Grid -->
-      <div class="gallery-grid" id="galleryGrid">
-        <article class="gallery-card" data-category="macro-layouts">
+      <div class="gallery-grid">
+        <!-- Card 1 -->
+        <div class="gallery-card" data-category="residential">
           <div class="card-image-wrap">
-            <svg class="blueprint-svg" viewBox="0 0 300 180" width="100%" height="100%">
-              <rect width="100%" height="100%" fill="var(--blueprint-bg)"/>
-              <rect x="20" y="20" width="260" height="25" fill="none" stroke="var(--primary-accent)" stroke-dasharray="4"/>
-              <rect x="20" y="55" width="70" height="105" fill="none" stroke="var(--primary-accent)" stroke-dasharray="4"/>
-              <rect x="100" y="55" width="180" height="105" fill="none" stroke="var(--secondary-accent)"/>
-              <text x="110" y="80" fill="var(--text-main)" font-size="12">CSS Grid Macro Layout</text>
-            </svg>
-            <div class="gallery-overlay">Zoom Blueprint 🔍</div>
+            <img src="architectural-blueprint@2x_2.jpg" alt="Detailed Technical Blueprint" class="card-img">
+            <div class="gallery-overlay">Zoom Blueprint View 🔍</div>
           </div>
           <div class="gallery-info">
-            <span class="card-tag">Macro Layouts</span>
-            <h3>2D CSS Grid Layout Engine</h3>
-            <p>Structural blueprint for responsive full-viewport web application frames.</p>
+            <span class="card-tag">Residential</span>
+            <h3>Modern Villa CAD Blueprint</h3>
+            <p>Detailed technical floor plan layout with wall measurements and plumbing vectors.</p>
           </div>
-        </article>
+        </div>
 
-        <article class="gallery-card" data-category="ui-systems">
+        <!-- Card 2 -->
+        <div class="gallery-card" data-category="model">
           <div class="card-image-wrap">
-            <svg class="blueprint-svg" viewBox="0 0 300 180" width="100%" height="100%">
-              <rect width="100%" height="100%" fill="var(--blueprint-bg)"/>
-              <rect x="30" y="30" width="240" height="40" rx="8" fill="none" stroke="var(--secondary-accent)"/>
-              <circle cx="50" cy="50" r="10" fill="var(--primary-accent)"/>
-              <rect x="70" y="45" width="120" height="10" rx="4" fill="var(--text-main)"/>
-              <rect x="30" y="85" width="110" height="65" rx="8" fill="none" stroke="var(--primary-accent)"/>
-              <rect x="160" y="85" width="110" height="65" rx="8" fill="none" stroke="var(--primary-accent)"/>
-              <text x="40" y="110" fill="var(--text-main)" font-size="10">Flex Component</text>
-            </svg>
-            <div class="gallery-overlay">Zoom Blueprint 🔍</div>
+            <img src="images_2.jpg" alt="3D House Model Blueprint Workspace" class="card-img">
+            <div class="gallery-overlay">Zoom Blueprint View 🔍</div>
           </div>
           <div class="gallery-info">
-            <span class="card-tag">UI Systems</span>
-            <h3>Atomic Flexbox UI Components</h3>
-            <p>Micro-component design system focusing on navigation bars and input groups.</p>
+            <span class="card-tag">3D Model</span>
+            <h3>Residential Craft Model & Layout</h3>
+            <p>Physical miniature mockup backed by full CAD architectural drawings.</p>
           </div>
-        </article>
+        </div>
 
-        <article class="gallery-card" data-category="database">
+        <!-- Card 3 -->
+        <div class="gallery-card" data-category="commercial">
           <div class="card-image-wrap">
-            <svg class="blueprint-svg" viewBox="0 0 300 180" width="100%" height="100%">
-              <rect width="100%" height="100%" fill="var(--blueprint-bg)"/>
-              <rect x="30" y="30" width="100%" height="40" rx="4" fill="none" stroke="var(--primary-accent)"/>
-              <ellipse cx="80" cy="50" rx="30" ry="10" fill="none" stroke="var(--secondary-accent)"/>
-              <ellipse cx="220" cy="50" rx="30" ry="10" fill="none" stroke="var(--secondary-accent)"/>
-              <path d="M 80,60 L 80,120 M 220,60 L 220,120" stroke="var(--primary-accent)" stroke-dasharray="2"/>
-              <ellipse cx="80" cy="120" rx="30" ry="10" fill="none" stroke="var(--secondary-accent)"/>
-              <ellipse cx="220" cy="120" rx="30" ry="10" fill="none" stroke="var(--secondary-accent)"/>
-            </svg>
-            <div class="gallery-overlay">Zoom Blueprint 🔍</div>
+            <img src="3d_2.jpg" alt="3D High-Rise Commercial Blueprint" class="card-img">
+            <div class="gallery-overlay">Zoom Blueprint View 🔍</div>
           </div>
           <div class="gallery-info">
-            <span class="card-tag">Database Schemas</span>
-            <h3>Relational Data Mapping</h3>
-            <p>High-performance data relational diagram built for zero-latency client state synchronization.</p>
+            <span class="card-tag">Commercial</span>
+            <h3>Urban High-Rise Structural Plan</h3>
+            <p>Modular skyscraper steel frame analysis and exterior glass facade elevation.</p>
           </div>
-        </article>
+        </div>
       </div>
     </section>
 
-    <!-- Dynamic Specifications Search & Cards Grid -->
-    <section id="specifications" class="section-container">
+    <!-- LIVE SEARCH & SPECIFICATIONS SECTION -->
+    <section id="specs" class="section-container">
       <div class="section-header">
-        <h2 class="section-title">Technical Specifications & Architecture Catalog</h2>
-        <p class="section-desc">Search through architectural modules and component parameters in real time.</p>
+        <h2 class="section-title">Technical Specifications</h2>
+        <p class="section-desc">Search structural requirements, material vectors, and building codes.</p>
       </div>
 
-      <!-- Live Search Bar -->
       <div class="search-box-container">
-        <input type="text" id="searchInput" class="search-input" placeholder="Search architecture specs by title, tag, or keyword (e.g. 'Grid', 'State', 'SEO')..." />
         <span class="search-icon-inside">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search specs by keyword or tag (press '/' to focus)...">
       </div>
 
-      <!-- Content Cards Grid -->
-      <div class="specs-grid" id="specsGrid">
-        <article class="spec-card" data-title="Semantic HTML5 Foundation" data-tags="html accessibility seo structure">
-          <div class="card-badge">Infrastructure</div>
-          <h3>Semantic HTML5 Structure</h3>
-          <p>Proper landmark elements (&lt;header&gt;, &lt;main&gt;, &lt;article&gt;) providing AI readability and screen reader accessibility.</p>
-          <button class="btn-card-action" onclick="openSpecModal('Semantic HTML5 Structure', 'Using strict semantic landmark elements ensures screen readers and indexing bots parse web structures efficiently without reliance on arbitrary container divs.')">Read Specifications</button>
-        </article>
-
-        <article class="spec-card" data-title="CSS Grid & Flexbox Hybrid" data-tags="css grid flexbox layout responsive">
-          <div class="card-badge">Layout Engine</div>
-          <h3>2D Grid & Micro Flexbox</h3>
-          <p>Macro viewport management via CSS Grid coupled with precision micro component positioning using Flexbox.</p>
-          <button class="btn-card-action" onclick="openSpecModal('2D Grid & Micro Flexbox', 'CSS Grid constructs macro architectural templates (headers, sidebars, main content grids) while Flexbox handles micro-component alignment within navigation items and card groups.')">Read Specifications</button>
-        </article>
-
-        <article class="spec-card" data-title="Vanilla JS State Engine" data-tags="javascript state logic storage modal">
-          <div class="card-badge">Logic Layer</div>
-          <h3>Framework-Free JavaScript State</h3>
-          <p>Lightweight client-side state handling for themes, search indexing, dynamic modals, and local storage persistence.</p>
-          <button class="btn-card-action" onclick="openSpecModal('Framework-Free JavaScript State', 'Leveraging modern ECMAScript standards to control application UI state, handle local browser persistence, and execute real-time DOM filtering without third-party dependencies.')">Read Specifications</button>
-        </article>
-      </div>
-    </section>
-
-    <!-- Interactive Dashboard Metrics Section -->
-    <section id="metrics" class="section-container metrics-wrapper">
-      <div class="section-header">
-        <h2 class="section-title">System Performance Metrics</h2>
-        <p class="section-desc">Real-time benchmark indicators achieved by pure-code architecture.</p>
-      </div>
-      <div class="metrics-grid">
-        <div class="metric-card">
-          <div class="metric-value" data-target="100">0</div>
-          <div class="metric-unit">% Compliance</div>
-          <div class="metric-label">WCAG 2.1 AA Accessibility</div>
+      <div class="specs-grid">
+        <div class="spec-card" data-title="Load Bearing Steel Frame" data-tags="structural steel material frame">
+          <span class="card-badge">Structural</span>
+          <h3>Load-Bearing Steel Frames</h3>
+          <p>High-tensile structural steel specs optimized for multi-story residential framing.</p>
+          <button class="btn-card-action" onclick="openSpecModal('Load-Bearing Steel Frames', 'Detailed engineering standards for grade 50 structural steel framing, deflection limits, and corrosion protection coating.')">View Standards</button>
         </div>
-        <div class="metric-card">
-          <div class="metric-value" data-target="99">0</div>
-          <div class="metric-unit">Score</div>
-          <div class="metric-label">Google Lighthouse Speed</div>
+
+        <div class="spec-card" data-title="Foundation Concrete Slab" data-tags="foundation concrete slab civil">
+          <span class="card-badge">Civil</span>
+          <h3>Reinforced Slab Foundations</h3>
+          <p>Sub-grade concrete slab specifications with integrated damp-proof membrane layers.</p>
+          <button class="btn-card-action" onclick="openSpecModal('Reinforced Slab Foundations', 'Complete soil bearing capacity requirement specs, rebar spacing matrices, and waterproofing standards.')">View Standards</button>
         </div>
-        <div class="metric-card">
-          <div class="metric-value" data-target="0">0</div>
-          <div class="metric-unit">Framework Dependencies</div>
-          <div class="metric-label">Pure Vanilla Execution</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-value" data-target="60">0</div>
-          <div class="metric-unit">FPS</div>
-          <div class="metric-label">Smooth Motion & Animations</div>
+
+        <div class="spec-card" data-title="Solar Thermal & HVAC Integration" data-tags="hvac solar electrical energy">
+          <span class="card-badge">MEP</span>
+          <h3>HVAC & Solar Integration</h3>
+          <p>Blueprint vector specs for rooftop photovoltaic solar integration and duct routing.</p>
+          <button class="btn-card-action" onclick="openSpecModal('HVAC & Solar Integration', 'Energy efficiency ratings, duct static pressure specs, and solar inverter wiring diagrams.')">View Standards</button>
         </div>
       </div>
     </section>
 
-    <!-- Personalized Consultation Request Portal -->
-    <section id="consultation" class="section-container consultation-section">
+    <!-- DASHBOARD METRICS SECTION -->
+    <section id="metrics" class="section-container">
+      <div class="metrics-wrapper">
+        <div class="section-header">
+          <h2 class="section-title">Engineering Impact</h2>
+          <p class="section-desc">Quantifiable milestones delivered across residential and commercial projects.</p>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-value" data-target="1250">0</div>
+            <div class="metric-unit">Units</div>
+            <div class="metric-label">Blueprints Generated</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" data-target="98">0</div>
+            <div class="metric-unit">%</div>
+            <div class="metric-label">Precision Rating</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" data-target="340">0</div>
+            <div class="metric-unit">Projects</div>
+            <div class="metric-label">Houses Built</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" data-target="15">0</div>
+            <div class="metric-unit">ms</div>
+            <div class="metric-label">Avg CAD Vector Render</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONSULTATION PORTAL -->
+    <section id="consultation" class="section-container">
       <div class="consultation-card">
         <div class="consultation-header">
-          <h2>Request a Personalized Architecture Blueprint</h2>
-          <p>Work directly with an expert architect to construct custom enterprise web specs.</p>
+          <h2 class="section-title">Request Architectural Consultation</h2>
+          <p class="section-desc">Submit your project specs to receive a customized CAD blueprint proposal.</p>
         </div>
         <form id="consultationForm" class="consultation-form" novalidate>
           <div class="form-row">
             <div class="form-group">
               <label for="fullName">Full Name *</label>
-              <input type="text" id="fullName" class="form-input" placeholder="e.g. Alex Morgan" required />
-              <span class="error-msg" id="nameError">Please enter your name.</span>
+              <input type="text" id="fullName" class="form-input" placeholder="e.g. Eleanor Vance">
+              <span class="error-msg" id="nameError">Please enter your full name (at least 2 characters).</span>
             </div>
             <div class="form-group">
               <label for="workEmail">Work Email *</label>
-              <input type="email" id="workEmail" class="form-input" placeholder="alex@company.com" required />
-              <span class="error-msg" id="emailError">Please enter a valid work email address.</span>
+              <input type="email" id="workEmail" class="form-input" placeholder="e.g. eleanor@architecture.com">
+              <span class="error-msg" id="emailError">Please enter a valid email address.</span>
             </div>
           </div>
+
           <div class="form-row">
             <div class="form-group">
-              <label for="platformScope">Web Platform Scope *</label>
-              <select id="platformScope" class="form-input" required>
-                <option value="">Select Platform Scope...</option>
-                <option value="SaaS Application">SaaS Application Portal</option>
-                <option value="Enterprise Dashboard">Enterprise Web Dashboard</option>
-                <option value="E-Commerce Architecture">E-Commerce System Architecture</option>
+              <label for="platformScope">Project Type *</label>
+              <select id="platformScope" class="form-input">
+                <option value="">Select Project Scope...</option>
+                <option value="Residential House">Residential House Blueprint</option>
+                <option value="Commercial Complex">Commercial Complex</option>
+                <option value="3D Physical Model">3D Model & Rendering</option>
               </select>
-              <span class="error-msg" id="scopeError">Please select a platform scope.</span>
+              <span class="error-msg" id="scopeError">Please select a project scope.</span>
             </div>
             <div class="form-group">
               <label for="budgetRange">Estimated Budget *</label>
-              <select id="budgetRange" class="form-input" required>
+              <select id="budgetRange" class="form-input">
                 <option value="">Select Budget Range...</option>
-                <option value="$2,000 - $5,000">$2,000 - $5,000</option>
-                <option value="$5,000 - $15,000">$5,000 - $15,000</option>
-                <option value="$15,000+">$15,000+</option>
+                <option value="$10k - $25k">$10,000 - $25,000</option>
+                <option value="$25k - $50k">$25,000 - $50,000</option>
+                <option value="$50k+">$50,000+</option>
               </select>
               <span class="error-msg" id="budgetError">Please select a budget range.</span>
             </div>
           </div>
+
           <div class="form-group">
-            <label for="specDetails">Detailed Specifications & System Requirements *</label>
-            <textarea id="specDetails" class="form-input textarea-input" rows="4" placeholder="Describe your web application layout requirements, performance targets, or special features..." required></textarea>
-            <span class="error-msg" id="detailsError">Please enter detailed project requirements (min 15 characters).</span>
+            <label for="specDetails">Specification Details *</label>
+            <textarea id="specDetails" class="form-input textarea-input" rows="4" placeholder="Provide details on land dimensions, room requirements, or structural preferences..."></textarea>
+            <span class="error-msg" id="detailsError">Details must be at least 15 characters long.</span>
           </div>
-          <button type="submit" class="btn-primary btn-submit">Submit Consultation Request 🚀</button>
+
+          <button type="submit" class="btn-primary btn-submit">Submit Consultation Proposal</button>
         </form>
       </div>
     </section>
 
   </main>
 
-  <!-- Modals Section -->
-
-  <!-- Lightbox Modal -->
+  <!-- MODALS -->
   <div id="lightboxModal" class="modal-overlay" aria-hidden="true">
     <div class="modal-box lightbox-box">
-      <button class="modal-close" id="lightboxClose">&times;</button>
+      <button id="lightboxClose" class="modal-close" aria-label="Close modal">&times;</button>
       <div id="lightboxContent" class="lightbox-content"></div>
-      <div class="lightbox-caption" id="lightboxCaption"></div>
+      <p id="lightboxCaption" class="lightbox-caption"></p>
     </div>
   </div>
 
-  <!-- Spec Detail Modal -->
   <div id="specModal" class="modal-overlay" aria-hidden="true">
-    <div class="modal-box text-modal-box">
-      <button class="modal-close" id="specModalClose">&times;</button>
-      <h2 id="specModalTitle">Spec Title</h2>
-      <hr class="modal-divider"/>
-      <p id="specModalBody">Spec detail body content...</p>
+    <div class="modal-box">
+      <button id="specModalClose" class="modal-close" aria-label="Close modal">&times;</button>
+      <h3 id="specModalTitle">Specification Standard</h3>
+      <hr class="modal-divider">
+      <p id="specModalBody"></p>
     </div>
   </div>
 
-  <!-- Form Success Dialog Modal -->
   <div id="successModal" class="modal-overlay" aria-hidden="true">
-    <div class="modal-box text-modal-box">
-      <button class="modal-close" id="successModalClose">&times;</button>
+    <div class="modal-box">
+      <button id="successModalClose" class="modal-close" aria-label="Close modal">&times;</button>
       <div class="success-icon">✅</div>
-      <h2>Blueprint Request Received!</h2>
-      <p id="successModalMsg">Thank you. Your consultation request has been validated and logged into our queue.</p>
-      <button class="btn-primary" onclick="closeModal('successModal')">Close Window</button>
+      <h3>Request Submitted!</h3>
+      <p id="successModalMsg"></p>
     </div>
   </div>
 
-  <!-- Floating Back to Top Control -->
-  <button id="backToTopBtn" class="back-to-top" aria-label="Back to Top">
-    ▲ Top
-  </button>
+  <button id="backToTopBtn" class="back-to-top" aria-label="Back to top">↑ Top</button>
 
-  <!-- Desktop Footer -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-brand">
         <h3>Blueprint</h3>
-        <p>Architecting robust, modern web systems with pure web standards.</p>
-        <span class="status-indicator"><span class="status-dot"></span> All Systems Operational</span>
+        <p>Precision architectural schematics, CAD floor plans, and 3D housing design models.</p>
+        <a href="https://decodlab.com" target="_blank" rel="noopener noreferrer" class="agency-link">
+          Powered by <strong>decodlab</strong>
+        </a>
       </div>
+
       <div class="footer-links">
         <h4>Navigation</h4>
         <ul>
           <li><a href="#hero">Overview</a></li>
-          <li><a href="#gallery">Blueprints</a></li>
-          <li><a href="#specifications">Specifications</a></li>
+          <li><a href="#gallery">House Blueprints</a></li>
+          <li><a href="#specs">Specifications</a></li>
           <li><a href="#consultation">Consultation</a></li>
         </ul>
       </div>
+
       <div class="footer-contact">
-        <h4>DecodeLabs Program</h4>
-        <p>Batch: 2026 | Full Stack Track</p>
+        <h4>Platform Status</h4>
+        <div class="status-indicator">
+          <span class="status-dot"></span> Vector Engine Active
+        </div>
       </div>
     </div>
+
     <div class="footer-bottom">
-      <p>&copy; 2026 Blueprint | Powered by 🤍. All Rights Reserved.</p>
+      <p>&copy; 2026 Blueprint Inc. All rights reserved.</p>
+      <p class="credit-tag">Made by Atiqa Lohani with help of Gemini</p>
     </div>
   </footer>
 
